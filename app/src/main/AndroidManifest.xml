@@ -19,6 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".StoreOwnerHomeActivity"
+            android:exported="true"
+            android:label="@string/store_owner_orders_page">
+        </activity>
+        <activity
+            android:name=".StoreOwnerOrderDetailsActivity"
+            android:exported="true"
+            android:label="@string/store_owner_orders_details_page"
+            android:parentActivityName=".StoreOwnerHomeActivity">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".StoreOwnerHomeActivity" />
+        </activity>
     </application>
 
 </manifest>
