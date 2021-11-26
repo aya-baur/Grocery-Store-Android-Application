@@ -16,4 +16,69 @@
     <string name="edit_product_category">Product Category</string>
     <string name="price">Price</string>
     <string name="submit_button">Submit</string>
+    <!-- Strings related to store owner home page -->
+    <string name="store_owner_orders_page">Store Home</string>
+    <string-array name="sample_customer_names">
+        <item>Alex Honnold</item>
+        <item>James May</item>
+        <item>Rebecca Black</item>
+        <item>Bobby Lee</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+    </string-array>
+    <string-array name="sample_order_times">
+        <item>12:30pm</item>
+        <item>12:34pm</item>
+        <item>1:00pm</item>
+        <item>2:01pm</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+        <item>Test</item>
+    </string-array>
+    <string name="button_my_products">My Products</string>
+
+    <!-- Strings related to store owner order details page -->
+    <string name="store_owner_orders_details_page">Order Details</string>
+    <string-array name="sample_order_items">
+        <item>Watermelon</item>
+        <item>Carrots</item>
+        <item>Asparagus</item>
+        <item>Fresh Vegetables</item>
+        <item>Fresh Vegetables2</item>
+        <item>Fresh Vegetables3</item>
+        <item>Fresh Vegetables4</item>
+        <item>Fresh Vegetables5</item>
+    </string-array>
+    <string-array name="sample_order_prices">
+        <item>$8.99</item>
+        <item>$8.99</item>
+        <item>$0.99</item>
+        <item>$1.99</item>
+        <item>$3.99</item>
+        <item>$2.99</item>
+        <item>$13.99</item>
+        <item>$23.99</item>
+    </string-array>
+    <string name="name">Name:</string>
+    <string name="product">Product</string>
+    <string name="amount">Amount</string>
+    <string name="item_total">Item Total</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="tax">Tax</string>
+    <string name="total">Total</string>
+    <string name="order_complete">Mark as Ready for Pickup</string>
+    <string name="store_owner_sign_up">Store Owner Sign-Up</string>
+    <string name="store_owner_sign_up_id">Store ID</string>
+    <string name="store_owner_sign_up_error">Store ID already exists</string>
+    <string name="store_owner_sign_up_button">Sign Up</string>
+    <string name="store_owner_sign_up_password">Password</string>
 </resources>
