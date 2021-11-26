@@ -70,4 +70,9 @@
     <string name="tax">Tax</string>
     <string name="total">Total</string>
     <string name="order_complete">Mark as Ready for Pickup</string>
+    <string name="store_owner_sign_up">Store Owner Sign-Up</string>
+    <string name="store_owner_sign_up_id">Store ID</string>
+    <string name="store_owner_sign_up_error">Store ID already exists</string>
+    <string name="store_owner_sign_up_button">Sign Up</string>
+    <string name="store_owner_sign_up_password">Password</string>
 </resources>
