@@ -9,6 +9,13 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="new_product_page_title">New Product</string>
+    <string name="new_product_name">Enter Product Name</string>
+    <string name="edit_new_product_name">Product Name</string>
+    <string name="new_product_category">Enter Product Category</string>
+    <string name="edit_product_category">Product Category</string>
+    <string name="price">Price</string>
+    <string name="submit_button">Submit</string>
     <!-- Strings related to store owner home page -->
     <string name="store_owner_orders_page">Store Home</string>
     <string-array name="sample_customer_names">
@@ -63,11 +70,15 @@
     </string-array>
     <string name="name">Name:</string>
     <string name="product">Product</string>
-    <string name="price">Price</string>
     <string name="amount">Amount</string>
     <string name="item_total">Item Total</string>
     <string name="subtotal">Subtotal</string>
     <string name="tax">Tax</string>
     <string name="total">Total</string>
     <string name="order_complete">Mark as Ready for Pickup</string>
+    <string name="store_owner_sign_up">Store Owner Sign-Up</string>
+    <string name="store_owner_sign_up_id">Store ID</string>
+    <string name="store_owner_sign_up_error">Store ID already exists</string>
+    <string name="store_owner_sign_up_button">Sign Up</string>
+    <string name="store_owner_sign_up_password">Password</string>
 </resources>
