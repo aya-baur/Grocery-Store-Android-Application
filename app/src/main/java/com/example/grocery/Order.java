@@ -1,5 +1,6 @@
 package com.example.grocery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
@@ -10,12 +11,11 @@ public class Order {
     private int customer_id;
     private long time;
     private boolean ready_pickup;
-    // product_ids map index to product_id
-    private Map<String, Integer> product_ids;
+    private ArrayList<Integer> product_ids;
 
     public Order() {
     }
-    public Order(String customer_name, int customer_id, Map<String, Integer> product_ids) {
+    public Order(String customer_name, int customer_id, ArrayList<Integer> product_ids) {
         this.customer_name = customer_name;
         this.customer_id = customer_id;
         this.product_ids = product_ids;
@@ -64,11 +64,11 @@ public class Order {
         this.ready_pickup = ready_pickup;
     }
 
-    public Map<String, Integer> getProduct_ids() {
+    public ArrayList<Integer> getProduct_ids() {
         return product_ids;
     }
 
-    public void setProduct_ids(Map<String, Integer> product_ids) {
+    public void setProduct_ids(ArrayList<Integer> product_ids) {
         this.product_ids = product_ids;
     }
 }

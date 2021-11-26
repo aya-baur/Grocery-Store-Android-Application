@@ -1,5 +1,6 @@
 package com.example.grocery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,8 +9,8 @@ public class Customer {
     private String name;
     private String email;
     private String password;
-    // order_data maps order_id to store_id
-    private Map<String, Map<String, Integer>> orders_data;
+    // order_data maps index to order_id and store_id
+    private ArrayList<Map<String, Integer>> orders_data;
     public Customer() {
     }
     public Customer(String name, String email, String password) {
@@ -17,7 +18,7 @@ public class Customer {
         this.email = email;
         this.password = password;
         this.id = email.hashCode();
-        this.orders_data = new HashMap<>();
+        this.orders_data = new ArrayList<>();
     }
 
     public int getId() {
@@ -52,11 +53,11 @@ public class Customer {
         this.password = password;
     }
 
-    public Map<String, Map<String, Integer>> getOrders_data() {
+    public ArrayList<Map<String, Integer>> getOrders_data() {
         return orders_data;
     }
 
-    public void setOrders_data(Map<String, Map<String, Integer>> orders_data) {
+    public void setOrders_data(ArrayList<Map<String, Integer>> orders_data) {
         this.orders_data = orders_data;
     }
 }
