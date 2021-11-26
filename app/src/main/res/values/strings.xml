@@ -9,4 +9,11 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="new_product_page_title">New Product</string>
+    <string name="new_product_name">Enter Product Name</string>
+    <string name="edit_new_product_name">Product Name</string>
+    <string name="new_product_category">Enter Product Category</string>
+    <string name="edit_product_category">Product Category</string>
+    <string name="price">Price</string>
+    <string name="submit_button">Submit</string>
 </resources>
