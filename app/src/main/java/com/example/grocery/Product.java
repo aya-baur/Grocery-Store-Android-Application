@@ -7,6 +7,7 @@ public class Product {
     private int quantity;
     private double price;
     private String name;
+
     public Product() {
     }
     public Product(String name, int quantity, double price) {
