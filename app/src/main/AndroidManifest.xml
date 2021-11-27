@@ -20,6 +20,12 @@
             android:exported="true"
             android:label="@string/store_owner_orders_page">
         </activity>
+
+        <activity
+            android:name=".ProductListActivity"
+            android:exported="true"
+            android:label="Product List">
+        </activity>
         <activity
             android:name=".StoreOwnerOrderDetailsActivity"
             android:exported="true"
