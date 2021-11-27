@@ -7,7 +7,13 @@
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.23429633554808996" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15640556340065795" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/new_product_page.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/new_product_page.xml" value="0.3965607087024492" />
+        <entry key="app/src/main/res/layout/store_owner_order_detail_row.xml" value="0.3976449275362319" />
+        <entry key="app/src/main/res/layout/store_owner_order_details.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/store_owner_order_row.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/store_owner_orders.xml" value="0.3976449275362319" />
+        <entry key="app/src/main/res/layout/store_owner_sign_up.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/test.xml" value="0.4036458333333333" />
       </map>
     </option>
   </component>
