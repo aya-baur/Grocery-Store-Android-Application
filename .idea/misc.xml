@@ -3,21 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/sungh/Documents/School/CSCB07/B07Project/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/sungh/Documents/School/CSCB07/B07Project/app/src/main/res/layout-w936dp/activity_login.xml" value="0.1" />
-        <entry key="..\:/Users/sungh/Documents/School/CSCB07/B07Project/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/sungh/Documents/School/CSCB07/B07Project/app/src/main/res/layout/activity_main.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/sungh/Documents/School/CSCB07/B07Project/app/src/main/res/layout/store_owner_orders.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/sungh/Documents/School/CSCB07/B07Project/app/src/main/res/layout/store_owner_orders_details.xml" value="0.13020833333333334" />
-        <entry key="app/src/main/res/layout/activity_available_product_list.xml" value="0.13994565217391305" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12817028985507245" />
-        <entry key="app/src/main/res/layout/list.xml" value="0.2693432889755103" />
-        <entry key="app/src/main/res/layout/product_list.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/product_list_row.xml" value="0.3595930319922529" />
-        <entry key="app/src/main/res/layout/store_owner_order_detail_row.xml" value="0.4485981308411215" />
-        <entry key="app/src/main/res/layout/store_owner_order_details.xml" value="0.27180777010548257" />
-        <entry key="app/src/main/res/layout/store_owner_order_row.xml" value="0.13405797101449277" />
-        <entry key="app/src/main/res/layout/store_owner_orders.xml" value="0.21049855884935292" />
+        <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.21897589726640224" />
+        <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.23429633554808996" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.15640556340065795" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/new_product_page.xml" value="0.33" />
       </map>
     </option>
   </component>
@@ -26,5 +16,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.3098958333333333" />
+      </ProjectState>
+    </option>
   </component>
 </project>
