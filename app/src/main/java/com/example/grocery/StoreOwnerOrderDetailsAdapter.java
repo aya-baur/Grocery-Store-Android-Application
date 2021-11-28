@@ -10,8 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+
 public class StoreOwnerOrderDetailsAdapter extends RecyclerView.Adapter<StoreOwnerOrderDetailsAdapter.ViewHolder> {
-    String[] data1, data2, data3, data4;
+    ArrayList<Product> products;
+    ArrayList<Integer> quantities;
     Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -26,12 +30,16 @@ public class StoreOwnerOrderDetailsAdapter extends RecyclerView.Adapter<StoreOwn
         }
     }
 
-    public StoreOwnerOrderDetailsAdapter(Context context, String[] s1, String[] s2, String[] s3, String[] s4) {
+    public StoreOwnerOrderDetailsAdapter(Context context, ArrayList<Product> products, ArrayList<Integer> quantities) {
         this.context = context;
-        this.data1 = s1;
-        this.data2 = s2;
-        this.data3 = s3;
-        this.data4 = s4;
+        this.products = products;
+        this.quantities = quantities;
+    }
+
+    public void setData(ArrayList<Product> products, ArrayList<Integer> quantities) {
+        this.products = products;
+        this.quantities = quantities;
+        this.notifyItemInserted(products.size());
     }
 
     @NonNull
@@ -44,16 +52,20 @@ public class StoreOwnerOrderDetailsAdapter extends RecyclerView.Adapter<StoreOwn
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.orderItemName.setText(data1[position]);
-        holder.price.setText(data2[position]);
-        holder.amount.setText("x3");
-        holder.orderItemTotal.setText("$30.00");
+        holder.orderItemName.setText(products.get(position).getName());
+        String price_unit = context.getString(R.string.price_per_unit,
+                NumberFormat.getCurrencyInstance().format(products.get(position).getPrice()),
+                products.get(position).getUnit());
+        holder.price.setText(price_unit);
+        holder.amount.setText(String.valueOf(this.quantities.get(position)));
+        double total = products.get(position).getPrice() * this.quantities.get(position);
+        holder.orderItemTotal.setText(NumberFormat.getCurrencyInstance().format(total));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return data1.length;
+        return products.size();
     }
 }
 

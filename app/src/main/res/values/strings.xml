@@ -19,6 +19,11 @@
     <string name="quantity_left_less_than_0">"Quantity cannot be less than 0"</string>
     <!-- Strings related to store owner home page -->
     <string name="store_owner_orders_page">Store Home</string>
+    <string-array name="statuses">
+        <item>Created</item>
+        <item>Waiting Pickup</item>
+        <item>Picked Up</item>
+    </string-array>
     <string-array name="sample_products_names">
         <item>Coke Cola (bottle 591ml)</item>
         <item>Aquafina bottled water (500ml)</item>
@@ -121,13 +126,16 @@
         <item>$13.99</item>
         <item>$23.99</item>
     </string-array>
+    <string name="tax_rate">13%</string>
     <string name="name">Name:</string>
     <string name="product">Product</string>
+    <string name="status">Status:</string>
     <string name="amount">Amount</string>
     <string name="item_total">Item Total</string>
     <string name="subtotal">Subtotal</string>
     <string name="tax">Tax</string>
     <string name="total">Total</string>
+    <string name="price_per_unit">%1$s \n/ %2$s</string>
     <string name="order_complete">Mark as Ready for Pickup</string>
     <string name="store_owner_sign_up">Store Owner Sign-Up</string>
     <string name="store_owner_sign_up_id">Store ID</string>

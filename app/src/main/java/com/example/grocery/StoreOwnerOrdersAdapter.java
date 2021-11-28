@@ -12,27 +12,33 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrdersAdapter.ViewHolder> {
-    String[] data1, data2;
+    ArrayList<Order> orders;
     Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView orderName, orderTime, isComplete;
+        TextView orderName, orderTime, orderStatus;
         CardView container;
 
         public ViewHolder(View view) {
             super(view);
             orderName = view.findViewById(R.id.order_name);
             orderTime = view.findViewById(R.id.order_time);
-            isComplete = view.findViewById(R.id.is_complete);
+            orderStatus = view.findViewById(R.id.order_status);
             container = view.findViewById(R.id.order_button);
         }
     }
 
-    public StoreOwnerOrdersAdapter(Context context, String[] s1, String[] s2) {
+    public StoreOwnerOrdersAdapter(Context context, ArrayList<Order> orders) {
         this.context = context;
-        this.data1 = s1;
-        this.data2 = s2;
+        this.orders = orders;
+    }
+
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+        this.notifyItemInserted(orders.size());
     }
 
     @NonNull
@@ -45,11 +51,13 @@ public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrde
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.orderName.setText(data1[position]);
-        holder.orderTime.setText(data2[position]);
+        holder.orderName.setText(orders.get(position).getCustomer_name());
+        holder.orderTime.setText(orders.get(position).getTimeFormatted());
+        holder.orderStatus.setText(context.getResources().getStringArray(R.array.statuses)[orders.get(position).getStatus()]);
         holder.container.setOnClickListener((View view) -> {
             Intent intent = new Intent(context, StoreOwnerOrderDetailsActivity.class);
-            intent.putExtra(StoreOwnerHomeActivity.EXTRA_MESSAGE, "test");
+            intent.putExtra(StoreOwnerHomeActivity.ORDER_ID, orders.get(position).getId());
+            intent.putExtra(StoreOwnerHomeActivity.ORDER_STATUS, orders.get(position).getStatus());
             context.startActivity(intent);
         });
     }
@@ -57,7 +65,7 @@ public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrde
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return data1.length;
+        return orders.size();
     }
 }
 
