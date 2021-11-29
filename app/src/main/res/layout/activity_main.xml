@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/sakdfj"
-        android:layout_width="wrap_content"
+
+
+    <TextView
+        android:id="@+id/txtLoginAs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="@string/action_sign_in"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:text="Login"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="28dp"
+        android:fontFamily="sans-serif-black"
+        />
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        />
+
+    <EditText
+        android:id="@+id/editTextPass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="5dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoginAsCustomer"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
+        android:text="Login As Customer"
+        android:backgroundTint="#7CB342"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoginAsSeller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
+        android:text="Login As Seller"
+        android:backgroundTint="#E53935"
+        />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="233dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="220dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/txtCreateAccount"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Dont have Account ? Create Account"
+        />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="238dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="48dp"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="89dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
