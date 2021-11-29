@@ -44,9 +44,8 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
         StoreOwnerOrdersAdapter storeOwnerOrdersAdapter = new StoreOwnerOrdersAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(storeOwnerOrdersAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
 
-        String store_id = "-899724305";
+        String store_id = getIntent().getStringExtra("ID");
         populateStoreDataFromId(store_id, storeOwnerOrdersAdapter);
 
         Button myProducts = findViewById(R.id.my_products);
