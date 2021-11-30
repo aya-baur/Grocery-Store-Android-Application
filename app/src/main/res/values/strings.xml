@@ -142,4 +142,8 @@
     <string name="store_owner_sign_up_error">Store ID already exists</string>
     <string name="store_owner_sign_up_button">Sign Up</string>
     <string name="store_owner_sign_up_password">Password</string>
+
+    <!-- Strings related to customer home page -->
+    <string name="customer_store_lists">List of Stores Available</string>
+    <string name="customer_button_orders">Your Orders</string>
 </resources>

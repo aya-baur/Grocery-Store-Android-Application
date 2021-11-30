@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,13 +43,18 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
         setContentView(R.layout.store_owner_orders);
 
         recyclerView = findViewById(R.id.store_owner_recycler_view);
-
-        StoreOwnerOrdersAdapter storeOwnerOrdersAdapter = new StoreOwnerOrdersAdapter(this, new ArrayList<>());
-        recyclerView.setAdapter(storeOwnerOrdersAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         String store_id = getIntent().getStringExtra("ID");
-        populateStoreDataFromId(store_id, storeOwnerOrdersAdapter);
+
+        if (store == null) {
+            populateStoreDataFromId(store_id);
+        } else {
+            StoreOwnerOrdersAdapter storeOwnerOrdersAdapter = new StoreOwnerOrdersAdapter(this, new ArrayList<>());
+            ArrayList<Order> orderList = new ArrayList<>(store.getOrders().values());
+            Collections.sort(orderList);
+            storeOwnerOrdersAdapter.setOrders(orderList);
+            recyclerView.setAdapter(storeOwnerOrdersAdapter);
+        }
 
         Button myProducts = findViewById(R.id.my_products);
         myProducts.setOnClickListener((View view) -> {
@@ -56,7 +64,10 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
         });
     }
 
-    public void populateStoreDataFromId(String storeId, StoreOwnerOrdersAdapter storeOwnerOrdersAdapter) {
+    public void populateStoreDataFromId(String storeId) {
+        StoreOwnerOrdersAdapter storeOwnerOrdersAdapter = new StoreOwnerOrdersAdapter(this, new ArrayList<>());
+        recyclerView.setAdapter(storeOwnerOrdersAdapter);
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores").child(storeId);
         ValueEventListener listener = new ValueEventListener() {
             @Override
@@ -76,6 +87,34 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
         };
         ref.addListenerForSingleValueEvent(listener);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.store_owner_home_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+                if (store != null) {
+                    populateStoreDataFromId(String.valueOf(store.getId()));
+                } else {
+                    populateStoreDataFromId(getIntent().getStringExtra("ID"));
+                }
+                return true;
+            case R.id.menu_logout:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
