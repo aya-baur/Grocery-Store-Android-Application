@@ -12,9 +12,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
-public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrdersAdapter.ViewHolder> {
+public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAdapter.ViewHolder>{
     ArrayList<Order> orders;
+    ArrayList<String> storeNames;
     Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -23,34 +25,36 @@ public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrde
 
         public ViewHolder(View view) {
             super(view);
-            orderName = view.findViewById(R.id.order_name);
+            orderName = view.findViewById(R.id.store_name);
             orderTime = view.findViewById(R.id.order_time);
             orderStatus = view.findViewById(R.id.order_status);
-            container = view.findViewById(R.id.order_button);
+            container = view.findViewById(R.id.customer_store_button);
         }
     }
 
-    public StoreOwnerOrdersAdapter(Context context, ArrayList<Order> orders) {
+    public CustomerOrdersAdapter(Context context, ArrayList<Order> orders, ArrayList<String> storeNames) {
         this.context = context;
         this.orders = orders;
+        this.storeNames = storeNames;
     }
 
-    public void setOrders(ArrayList<Order> orders) {
+    public void setData(ArrayList<Order> orders, ArrayList<String> storeNames) {
         this.orders = orders;
+        this.storeNames = storeNames;
         this.notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomerOrdersAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.store_owner_order_row, parent, false);
-        return new ViewHolder(view);
+        return new CustomerOrdersAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.orderName.setText(orders.get(position).getCustomer_name());
+    public void onBindViewHolder(@NonNull CustomerOrdersAdapter.ViewHolder holder, int position) {
+        holder.orderName.setText(storeNames.get(position));
         holder.orderTime.setText(orders.get(position).getTimeFormatted());
         holder.orderStatus.setText(context.getResources().getStringArray(R.array.statuses)[orders.get(position).getStatus()]);
         holder.container.setOnClickListener((View view) -> {
@@ -67,4 +71,3 @@ public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrde
         return orders.size();
     }
 }
-

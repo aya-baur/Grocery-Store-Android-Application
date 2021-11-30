@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grocery">
         <activity
+            android:name=".CustomerOrderDetailsActivity"
+            android:exported="false"
+            android:label="@string/store_owner_orders_details_page"/>
+        <activity
             android:name=".CustomerHomeActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="Login"
-            >
-
+            android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,9 +30,7 @@
         <activity
             android:name=".StoreOwnerHomeActivity"
             android:exported="true"
-            android:label="@string/store_owner_orders_page">
-
-        </activity>
+            android:label="@string/store_owner_orders_page" />
         <activity
             android:name=".ProductListActivity"
             android:exported="true"
