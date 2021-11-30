@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="78dp">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -59,11 +59,11 @@
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
-            app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal2"
+            app:layout_constraintBottom_toTopOf="@+id/editPriceDecimal"
             app:layout_constraintStart_toEndOf="@+id/quantity_available" />
 
         <EditText
-            android:id="@+id/editTextNumberDecimal2"
+            android:id="@+id/editPriceDecimal"
             android:layout_width="119dp"
             android:layout_height="48dp"
             android:layout_marginStart="28dp"
@@ -108,7 +108,7 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             android:minHeight="48dp"
-            android:text="@string/edit_new_product_name"
+            android:hint="@string/edit_new_product_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_product_name"
             android:importantForAutofill="no" />
@@ -119,11 +119,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
+            android:onClick="addNewProduct"
             android:text="@string/submit_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/editUnit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
