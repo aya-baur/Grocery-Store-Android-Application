@@ -20,13 +20,12 @@
         />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextEmailStore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Email"
-        android:minHeight="48dp"
-        android:autofillHints="" />
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/editTextStoreName"
@@ -37,7 +36,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editTextPass"
+        android:id="@+id/editTextPassStore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -46,7 +45,7 @@
         android:minHeight="48dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSignUpAsSeller"
+        android:id="@+id/btnSignUpStore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cornerRadius="10dp"
