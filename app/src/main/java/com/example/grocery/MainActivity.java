@@ -74,19 +74,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        Intent intent = new Intent(MainActivity.this, CustomerSignUp.class);
+                        startActivity(intent);
 
-                        Toast.makeText(MainActivity.this,"Create Account As Customer  Clicked",Toast.LENGTH_SHORT).show();
-
-                        //TODO
                     }
                 }).setNeutralButton("Create Account As Store Owner ", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-
-                        Toast.makeText(MainActivity.this,"Create Account As Store Owner Clicked",Toast.LENGTH_SHORT).show();
-
-                        //TODO
+                        Intent intent = new Intent(MainActivity.this, StoreOwnerSignUp.class);
+                        startActivity(intent);
                     }
                 }).show();
 

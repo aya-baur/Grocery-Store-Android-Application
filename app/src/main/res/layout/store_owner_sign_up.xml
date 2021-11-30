@@ -12,12 +12,11 @@
         android:id="@+id/txtSignUpStore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign-Up Store Owner"
-        android:gravity="center"
         android:layout_marginTop="50dp"
-        android:textSize="28dp"
         android:fontFamily="sans-serif-black"
-        />
+        android:gravity="center"
+        android:text="Store Owner Sign-Up"
+        android:textSize="28dp" />
 
     <EditText
         android:id="@+id/editTextEmailStore"
