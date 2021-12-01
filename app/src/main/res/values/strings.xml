@@ -12,9 +12,11 @@
     <string name="new_product_page_title">New Product</string>
     <string name="new_product_name">Enter Product Name</string>
     <string name="edit_new_product_name">Product Name</string>
-    <string name="new_product_category">Enter Product Category</string>
-    <string name="edit_product_category">Product Category</string>
-    <string name="price">Price</string>
+<!--    <string name="new_product_category">Enter Product Category</string>-->
+<!--    <string name="edit_product_category">Product Category</string>-->
+    <string name="price">Price per Unit</string>
+    <string name="unit">Unit</string>
+    <string name="quantity">Quantity</string>
     <string name="submit_button">Submit</string>
     <string name="quantity_left_less_than_0">"Quantity cannot be less than 0"</string>
     <!-- Strings related to store owner home page -->
@@ -142,4 +144,8 @@
     <string name="store_owner_sign_up_error">Store ID already exists</string>
     <string name="store_owner_sign_up_button">Sign Up</string>
     <string name="store_owner_sign_up_password">Password</string>
+
+    <!-- Strings related to customer home page -->
+    <string name="customer_store_lists">List of Stores Available</string>
+    <string name="customer_button_orders">Your Orders</string>
 </resources>

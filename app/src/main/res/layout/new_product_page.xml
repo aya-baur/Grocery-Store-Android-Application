@@ -10,80 +10,122 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-109dp">
-
-        <TextView
-            android:id="@+id/new_product_name"
-            android:layout_width="213dp"
-            android:layout_height="28dp"
-            android:text="@string/new_product_name"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="88dp"
-            tools:layout_editor_absoluteY="108dp" />
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="78dp">
 
         <EditText
-            android:id="@+id/editTextNumberDecimal"
-            android:layout_width="217dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            app:layout_constraintTop_toBottomOf="@+id/new_product_name3"
-            tools:layout_editor_absoluteX="84dp" />
-
-        <EditText
-            android:id="@+id/editNewProductName2"
+            android:id="@+id/editUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:text="@string/edit_product_category"
-            app:layout_constraintTop_toBottomOf="@+id/new_product_name2"
-            tools:layout_editor_absoluteX="84dp" />
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_product_name3" />
 
         <TextView
             android:id="@+id/new_product_name3"
             android:layout_width="213dp"
             android:layout_height="28dp"
-            android:text="@string/price"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="42dp"
+            android:text="@string/unit"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="394dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_product_name2" />
 
         <TextView
             android:id="@+id/new_product_name2"
-            android:layout_width="213dp"
-            android:layout_height="28dp"
-            android:text="@string/new_product_category"
+            android:layout_width="151dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="39dp"
+            android:text="@string/price"
             android:textColor="@color/black"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="234dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantity_available" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/submit_button"
-            tools:layout_editor_absoluteX="144dp"
-            tools:layout_editor_absoluteY="541dp" />
+        <EditText
+            android:id="@+id/editTextNumberDecimal"
+            android:layout_width="118dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginBottom="43dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/editPriceDecimal"
+            app:layout_constraintStart_toEndOf="@+id/quantity_available" />
+
+        <EditText
+            android:id="@+id/editPriceDecimal"
+            android:layout_width="119dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="45dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/new_product_name3"
+            app:layout_constraintStart_toEndOf="@+id/new_product_name2" />
+
+        <TextView
+            android:id="@+id/quantity_available"
+            android:layout_width="103dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginTop="54dp"
+            android:text="@string/quantity"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editNewProductName" />
+
+        <TextView
+            android:id="@+id/new_product_name"
+            android:layout_width="213dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/new_product_name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editNewProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="12dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:text="@string/edit_new_product_name"
+            android:minHeight="48dp"
+            android:hint="@string/edit_new_product_name"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_product_name"
-            tools:layout_editor_absoluteX="88dp" />
+            android:importantForAutofill="no" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:onClick="addNewProduct"
+            android:text="@string/submit_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editUnit" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
