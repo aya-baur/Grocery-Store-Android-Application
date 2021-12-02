@@ -29,6 +29,7 @@ import java.util.Collections;
 
 public class ProductListActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String STORE_ID = "STORE_ID";
     public static RecyclerView recyclerView;
     public static FloatingActionButton add_new;
     public static String store_id;

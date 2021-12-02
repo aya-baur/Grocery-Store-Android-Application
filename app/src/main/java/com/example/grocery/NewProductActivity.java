@@ -44,9 +44,8 @@ public class NewProductActivity extends AppCompatActivity {
         //Getting intent and store ID
         Intent intent = getIntent();
         //Store ID to use when writing to database
-        //TODO remove the next line and uncomment the one after
-        String storeId = "-899724305";
-        //String storeId = intent.getStringExtra(ProductListActivity.STORE_ID);
+
+        String storeId = intent.getStringExtra(ProductListActivity.STORE_ID);
 
         // Writing to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -78,7 +77,6 @@ public class NewProductActivity extends AppCompatActivity {
         };
         ref.addListenerForSingleValueEvent(listener);
         //Go back to Nigel's page
-        //TODO test if this works
         finish();
     }
 
