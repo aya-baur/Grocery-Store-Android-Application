@@ -10,22 +10,24 @@
         android:layout_width="0dp"
         android:layout_height="600dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="70dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="80dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="120dp"
+            android:layout_width="170dp"
             android:layout_height="70dp"
             android:text="Name"
             android:textAlignment="center"
@@ -33,48 +35,33 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="Price per unit"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:text="Quantity left"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/textView18"
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="Unit"
             android:textAlignment="center"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:layout_weight="1"
-            android:text="Update quantity"
-            android:textAlignment="center"
-            android:textSize="20sp" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="16dp"
+
+
         android:clickable="true"
 
-
-        app:layout_constraintBottom_toBottomOf="@+id/product_list_recycler_view"
-
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

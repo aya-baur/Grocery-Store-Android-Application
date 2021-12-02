@@ -36,6 +36,7 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
     public static final String STORE_ID = "STORE_ID";
     public static RecyclerView recyclerView;
     public static Store store;
+    public static String store_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,22 +45,18 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.store_owner_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String store_id = getIntent().getStringExtra("ID");
 
-        if (store == null) {
-            populateStoreDataFromId(store_id);
-        } else {
-            StoreOwnerOrdersAdapter storeOwnerOrdersAdapter = new StoreOwnerOrdersAdapter(this, new ArrayList<>());
-            ArrayList<Order> orderList = new ArrayList<>(store.getOrders().values());
-            Collections.sort(orderList);
-            storeOwnerOrdersAdapter.setOrders(orderList);
-            recyclerView.setAdapter(storeOwnerOrdersAdapter);
+
+        if (getIntent().getStringExtra("ID") != null) {
+            store_id = getIntent().getStringExtra("ID");
+
         }
+        populateStoreDataFromId(store_id);
 
         Button myProducts = findViewById(R.id.my_products);
         myProducts.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ProductListActivity.class);
-            intent.putExtra(StoreOwnerHomeActivity.STORE_ID, store.getId());
+            intent.putExtra(StoreOwnerHomeActivity.STORE_ID, store_id);
             this.startActivity(intent);
         });
     }
@@ -85,7 +82,7 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
                         databaseError.toException());
             }
         };
-        ref.addListenerForSingleValueEvent(listener);
+        ref.addValueEventListener(listener);
 
     }
 
@@ -100,13 +97,6 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                if (store != null) {
-                    populateStoreDataFromId(String.valueOf(store.getId()));
-                } else {
-                    populateStoreDataFromId(getIntent().getStringExtra("ID"));
-                }
-                return true;
             case R.id.menu_logout:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
@@ -116,5 +106,4 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

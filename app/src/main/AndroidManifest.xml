@@ -8,36 +8,33 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Grocery">
+        android:theme="@style/Theme.Grocery" >
+        <activity
+            android:name=".CustomerOrdersActivity"
+            android:exported="true"
+            android:parentActivityName=".CustomerHomeActivity"
+            android:label="@string/customer_my_orders">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CustomerHomeActivity" />
+
+        </activity>
         <activity
             android:name=".CustomerOrderDetailsActivity"
             android:exported="false"
-            android:label="@string/store_owner_orders_details_page"/>
+            android:label="@string/store_owner_orders_details_page"
+            android:parentActivityName=".CustomerOrdersActivity" >
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CustomerOrdersActivity" />
+        </activity>
         <activity
             android:name=".CustomerHomeActivity"
             android:exported="true">
-        </activity>
-        <activity
-            android:name=".CustomerSignUp"
-            android:exported="false"
-            android:label="Customer Sign-Up"
-            android:parentActivityName=".MainActivity">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".StoreOwnerHomeActivity" />
-        </activity>
-        <activity
-            android:name=".StoreOwnerSignUp"
-            android:exported="false"
-            android:label="Store Owner Sign-Up"
-            android:parentActivityName=".MainActivity">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".StoreOwnerHomeActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
@@ -48,7 +45,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".StoreOwnerHomeActivity"
@@ -86,7 +82,13 @@
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ProductListActivity" />
+                android:value=".ProductListActivity"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
