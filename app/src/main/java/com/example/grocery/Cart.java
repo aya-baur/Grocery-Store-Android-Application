@@ -10,11 +10,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Map;
+
+import java.util.HashMap;
 
 public class Cart {
-    Map<String, Integer> products;
+    //Key is a product ID, Value is the quantity ordered
+    HashMap<Integer, Integer> products;
     private int customerID;
     private String customerName;
 
@@ -22,11 +23,38 @@ public class Cart {
     // public Order(String customer_name, int customer_id, ArrayList<Map<String, Integer>> products_data) {
 
     public Cart(){}
-    public Cart(int ID){
+    public Cart(int ID, String customerName){
+        HashMap<Integer, Integer> products = new HashMap<>();
         this.customerID = ID;
-        getCustomerName(customerID);
+        this.customerName = customerName;
     }
 
+    //method to add to one product to cart
+     public void addToCart(int productId){
+        if(products.containsKey(productId)){
+            //if product is already in the cart, increase the quantity
+            int count = products.get(productId);
+            count++;
+            products.put(productId, count);
+        }else{
+            products.put(productId, 1);
+        }
+     }
+
+     //method to add more than one product to cart
+     public void addToCart(int productId, int quantity){
+         if(products.containsKey(productId)){
+             //if product is already in the cart, increase the quantity
+             int count = products.get(productId); //returns the value attached to key
+             count += quantity;
+             products.put(productId, count);
+         }else{
+             products.put(productId, quantity);
+         }
+     }
+
+     /*
+    //Don't know if we need this
     public void getCustomerName(int customerID){
         //getting customer name form database
         //Reading from database
@@ -46,28 +74,6 @@ public class Cart {
         };
         ref.addListenerForSingleValueEvent(listener);
     }
+    */
 
-    //method to add to one product to cart
-     public void addToCart(String productId){
-        if(products.containsKey(productId)){
-            //if product is already in the cart, increase the quantity
-            int count = products.get(productId);
-            count++;
-            products.put(productId, count);
-        }else{
-            products.put(productId, 1);
-        }
-     }
-
-     //method to add more than one product to cart
-     public void addToCart(String productId, int quantity){
-         if(products.containsKey(productId)){
-             //if product is already in the cart, increase the quantity
-             int count = products.get(productId);
-             count += quantity;
-             products.put(productId, count);
-         }else{
-             products.put(productId, quantity);
-         }
-     }
 }
