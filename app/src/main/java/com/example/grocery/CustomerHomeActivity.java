@@ -24,43 +24,65 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class CustomerHomeActivity extends AppCompatActivity {
-    public static ArrayList<String> storeNames;
+    public static ArrayList<StoreNameId> storeNameIds;
     public static Customer customer;
     public static RecyclerView recyclerView;
+    public static final String CUSTOMER_ID = "CUSTOMER_ID";
+    public static final String STORE_ID = "STORE_ID";
+
+    public static class StoreNameId implements Comparable<StoreNameId> {
+        String name;
+        String id;
+        StoreNameId(String name, String id) {
+            this.name = name;
+            this.id = id;
+        }
+        @Override
+        public int compareTo(StoreNameId o) {
+            return name.compareTo(o.name);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_home);
 
-        recyclerView = findViewById(R.id.store_owner_recycler_view);
+        recyclerView = findViewById(R.id.customer_home_store_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String store_id = getIntent().getStringExtra("ID");
+        String customerId = "-438190309";
 
         CustomerStoresAdapter customerStoresAdapter = new CustomerStoresAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(customerStoresAdapter);
         populateStoreList();
 
 
-        Button myProducts = findViewById(R.id.my_products);
+        Button myProducts = findViewById(R.id.customer_orders_button);
         myProducts.setOnClickListener((View view) -> {
-            Intent intent = new Intent(this, ProductListActivity.class);
+            Intent intent = new Intent(this, CustomerOrdersActivity.class);
+            intent.putExtra(CustomerHomeActivity.CUSTOMER_ID, customerId);
             this.startActivity(intent);
         });
     }
 
     public void populateStoreList() {
-        StoreOwnerOrdersAdapter storeOwnerOrdersAdapter = new StoreOwnerOrdersAdapter(this, new ArrayList<>());
-        recyclerView.setAdapter(storeOwnerOrdersAdapter);
+        CustomerStoresAdapter customerStoresAdapter = new CustomerStoresAdapter(this, new ArrayList<>());
+        recyclerView.setAdapter(customerStoresAdapter);
+        storeNameIds = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores");
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<Order> orderList = new ArrayList<>();
-                Collections.sort(orderList);
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    String store_name = child.child("name").getValue(String.class);
+                    String store_id = String.valueOf(child.child("id").getValue(Integer.class));
+                    StoreNameId storeNameId = new StoreNameId(store_name, store_id);
+                    storeNameIds.add(storeNameId);
+                }
+                Collections.sort(storeNameIds);
                 Log.i("orders change", dataSnapshot.toString());
-                storeOwnerOrdersAdapter.setOrders(orderList);
+                customerStoresAdapter.setData(storeNameIds);
 
             }
             @Override

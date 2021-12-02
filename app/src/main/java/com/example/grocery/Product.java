@@ -4,16 +4,14 @@ import java.util.Map;
 
 public class Product {
     private int id;
-    private int quantity;
     private double price;
     private String unit;
     private String name;
 
     public Product() {
     }
-    public Product(String name, int quantity, double price, String unit) {
+    public Product(String name, double price, String unit) {
         this.name = name;
-        this.quantity = quantity;
         this.price = price;
         this.unit = unit;
         //product id is generated from its name
@@ -34,14 +32,6 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public double getPrice() {

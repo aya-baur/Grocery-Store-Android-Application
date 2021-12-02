@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAdapter.ViewHolder>{
-    ArrayList<Order> orders;
-    ArrayList<String> storeNames;
+    ArrayList<CustomerOrdersActivity.StoreOrder> storeOrders;
     Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -25,22 +24,20 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
 
         public ViewHolder(View view) {
             super(view);
-            orderName = view.findViewById(R.id.store_name);
+            orderName = view.findViewById(R.id.order_name);
             orderTime = view.findViewById(R.id.order_time);
             orderStatus = view.findViewById(R.id.order_status);
-            container = view.findViewById(R.id.customer_store_button);
+            container = view.findViewById(R.id.order_button);
         }
     }
 
-    public CustomerOrdersAdapter(Context context, ArrayList<Order> orders, ArrayList<String> storeNames) {
+    public CustomerOrdersAdapter(Context context, ArrayList<CustomerOrdersActivity.StoreOrder> storeOrders) {
         this.context = context;
-        this.orders = orders;
-        this.storeNames = storeNames;
+        this.storeOrders = storeOrders;
     }
 
-    public void setData(ArrayList<Order> orders, ArrayList<String> storeNames) {
-        this.orders = orders;
-        this.storeNames = storeNames;
+    public void setData(ArrayList<CustomerOrdersActivity.StoreOrder> storeOrders) {
+        this.storeOrders = storeOrders;
         this.notifyDataSetChanged();
     }
 
@@ -54,13 +51,14 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
 
     @Override
     public void onBindViewHolder(@NonNull CustomerOrdersAdapter.ViewHolder holder, int position) {
-        holder.orderName.setText(storeNames.get(position));
-        holder.orderTime.setText(orders.get(position).getTimeFormatted());
-        holder.orderStatus.setText(context.getResources().getStringArray(R.array.statuses)[orders.get(position).getStatus()]);
+        Order order = storeOrders.get(position).order;
+        holder.orderName.setText(storeOrders.get(position).name);
+        holder.orderTime.setText(order.getTimeFormatted());
+        holder.orderStatus.setText(context.getResources().getStringArray(R.array.statuses)[order.getStatus()]);
         holder.container.setOnClickListener((View view) -> {
-            Intent intent = new Intent(context, StoreOwnerOrderDetailsActivity.class);
-            intent.putExtra(StoreOwnerHomeActivity.ORDER_ID, orders.get(position).getId());
-            intent.putExtra(StoreOwnerHomeActivity.ORDER_STATUS, orders.get(position).getStatus());
+            Intent intent = new Intent(context, CustomerOrderDetailsActivity.class);
+            intent.putExtra(CustomerOrdersActivity.ORDER_ID, order.getId());
+            intent.putExtra(CustomerHomeActivity.STORE_ID, storeOrders.get(position).storeId);
             context.startActivity(intent);
         });
     }
@@ -68,6 +66,6 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return orders.size();
+        return storeOrders.size();
     }
 }

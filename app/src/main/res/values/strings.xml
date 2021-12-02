@@ -146,4 +146,14 @@
     <!-- Strings related to customer home page -->
     <string name="customer_store_lists">List of Stores Available</string>
     <string name="customer_button_orders">Your Orders</string>
+
+    <!-- Strings related to customer order page -->
+    <string name="customer_my_orders">My Orders</string>
+
+    <!-- Strings related to customer order details page -->
+    <string-array name="customer_statuses">
+        <item>Sent to Store</item>
+        <item>Ready for Pickup</item>
+        <item>Picked Up</item>
+    </string-array>
 </resources>
