@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapter.ViewHolder> {
@@ -37,13 +38,11 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
     public ProductsListAdapter(Context context, ArrayList<Product> Products) {
         this.context = context;
         this.Products = Products;
-
-
     }
 
     public void setProducts(ArrayList<Product> products) {
         this.Products = products;
-        this.notifyItemInserted(Products.size());
+        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -57,7 +56,7 @@ public class ProductsListAdapter extends RecyclerView.Adapter<ProductsListAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.testView1.setText(Products.get(position).getName());
-        holder.testView2.setText(String.valueOf(Products.get(position).getPrice()));
+        holder.testView2.setText(NumberFormat.getCurrencyInstance().format(Products.get(position).getPrice()));
         holder.testView4.setText(Products.get(position).getUnit());
 
     }

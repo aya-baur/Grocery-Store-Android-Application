@@ -77,8 +77,9 @@ public class CustomerOrderDetailsActivity extends AppCompatActivity {
                 nameView.setText(store.getName());
                 subtotalView.setText(NumberFormat.getCurrencyInstance().format(subTotal));
                 taxView.setText(getResources().getString(R.string.tax_rate));
-                totalView.setText(NumberFormat.getCurrencyInstance().format(subTotal*1.13));
+                totalView.setText(NumberFormat.getCurrencyInstance().format(subTotal * 1.13));
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("warning", "loadPost:onCancelled",
@@ -86,13 +87,5 @@ public class CustomerOrderDetailsActivity extends AppCompatActivity {
             }
         };
         ref.addListenerForSingleValueEvent(listener);
-    }
-
-    public void updateOrderStatus(String orderId, int status) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores");
-        ref.child(String.valueOf(StoreOwnerHomeActivity.store.getId()))
-                .child("orders")
-                .child(orderId)
-                .child("status").setValue(status);
     }
 }

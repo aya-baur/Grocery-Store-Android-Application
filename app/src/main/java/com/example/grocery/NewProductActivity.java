@@ -67,6 +67,8 @@ public class NewProductActivity extends AppCompatActivity {
                     //Writing to the database
                     //If we got to this line, we are sure that product does not exist in the database -> should be like that
                     ref.child("products").child(Integer.toString(productId)).setValue(newProduct);
+                    //Go back to Nigel's page
+                    finish();
                 }
             }
             @Override
@@ -76,8 +78,6 @@ public class NewProductActivity extends AppCompatActivity {
             }
         };
         ref.addListenerForSingleValueEvent(listener);
-        //Go back to Nigel's page
-        finish();
     }
 
 }

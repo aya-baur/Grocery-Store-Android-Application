@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAdapter.ViewHolder>{
-    ArrayList<CustomerOrdersActivity.StoreOrder> storeOrders;
+    ArrayList<CustomerOrdersActivity.CustomerOrder> customerOrders;
     Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -31,13 +31,13 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
         }
     }
 
-    public CustomerOrdersAdapter(Context context, ArrayList<CustomerOrdersActivity.StoreOrder> storeOrders) {
+    public CustomerOrdersAdapter(Context context, ArrayList<CustomerOrdersActivity.CustomerOrder> customerOrders) {
         this.context = context;
-        this.storeOrders = storeOrders;
+        this.customerOrders = customerOrders;
     }
 
-    public void setData(ArrayList<CustomerOrdersActivity.StoreOrder> storeOrders) {
-        this.storeOrders = storeOrders;
+    public void setData(ArrayList<CustomerOrdersActivity.CustomerOrder> customerOrders) {
+        this.customerOrders = customerOrders;
         this.notifyDataSetChanged();
     }
 
@@ -51,14 +51,14 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
 
     @Override
     public void onBindViewHolder(@NonNull CustomerOrdersAdapter.ViewHolder holder, int position) {
-        Order order = storeOrders.get(position).order;
-        holder.orderName.setText(storeOrders.get(position).name);
+        Order order = customerOrders.get(position).order;
+        holder.orderName.setText(customerOrders.get(position).name);
         holder.orderTime.setText(order.getTimeFormatted());
         holder.orderStatus.setText(context.getResources().getStringArray(R.array.statuses)[order.getStatus()]);
         holder.container.setOnClickListener((View view) -> {
             Intent intent = new Intent(context, CustomerOrderDetailsActivity.class);
             intent.putExtra(CustomerOrdersActivity.ORDER_ID, order.getId());
-            intent.putExtra(CustomerHomeActivity.STORE_ID, storeOrders.get(position).storeId);
+            intent.putExtra(CustomerHomeActivity.STORE_ID, customerOrders.get(position).storeId);
             context.startActivity(intent);
         });
     }
@@ -66,6 +66,6 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return storeOrders.size();
+        return customerOrders.size();
     }
 }

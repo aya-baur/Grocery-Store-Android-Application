@@ -55,7 +55,7 @@ public class StoreOwnerOrdersAdapter extends RecyclerView.Adapter<StoreOwnerOrde
         holder.orderStatus.setText(context.getResources().getStringArray(R.array.statuses)[orders.get(position).getStatus()]);
         holder.container.setOnClickListener((View view) -> {
             Intent intent = new Intent(context, StoreOwnerOrderDetailsActivity.class);
-            intent.putExtra(StoreOwnerHomeActivity.ORDER_ID, orders.get(position).getId());
+            intent.putExtra(StoreOwnerHomeActivity.ORDER_ID, String.valueOf(orders.get(position).getId()));
             intent.putExtra(StoreOwnerHomeActivity.ORDER_STATUS, orders.get(position).getStatus());
             context.startActivity(intent);
         });
