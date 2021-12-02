@@ -3,23 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/New/app/src/main/res/layout/activity_customer_home.xml" value="0.20416666666666666" />
-        <entry key="..\:/New/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/New/app/src/main/res/layout/new_product_page.xml" value="0.20416666666666666" />
-        <entry key="..\:/New/app/src/main/res/layout/store_owner_orders.xml" value="0.18796296296296297" />
-        <entry key="..\:/New/app/src/main/res/layout/store_owner_sign_up.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.1787037037037037" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.21897589726640224" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.23429633554808996" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15640556340065795" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/new_product_page.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/product_list.xml" value="0.16822916666666668" />
-        <entry key="app/src/main/res/layout/store_owner_order_detail_row.xml" value="0.3976449275362319" />
-        <entry key="app/src/main/res/layout/store_owner_order_details.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/store_owner_order_row.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/store_owner_orders.xml" value="0.3976449275362319" />
-        <entry key="app/src/main/res/layout/store_owner_sign_up.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/test.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/customer_sign_up.xml" value="0.1911231884057971" />
+        <entry key="app/src/main/res/layout/new_product_page.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/product_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/product_list_row.xml" value="0.30917790350548247" />
+        <entry key="app/src/main/res/layout/store_owner_order_row.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/store_owner_orders.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/menu/product_list_menu.xml" value="0.22552083333333334" />
+        <entry key="app/src/main/res/menu/store_owner_home_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

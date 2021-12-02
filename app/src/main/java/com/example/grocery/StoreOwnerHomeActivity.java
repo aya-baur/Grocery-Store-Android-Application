@@ -59,7 +59,7 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
         Button myProducts = findViewById(R.id.my_products);
         myProducts.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, ProductListActivity.class);
-            intent.putExtra(StoreOwnerHomeActivity.STORE_ID, store.getId());
+            intent.putExtra(StoreOwnerHomeActivity.STORE_ID, String.valueOf(store.getId()));
             this.startActivity(intent);
         });
     }

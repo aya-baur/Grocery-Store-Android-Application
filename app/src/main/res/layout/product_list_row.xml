@@ -14,31 +14,16 @@
 
         <TextView
             android:id="@+id/textViewName"
-            android:layout_width="140dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
+            android:textAlignment="center"
             android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textViewPrice"
             android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textViewQuantity"
-            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
@@ -52,23 +37,6 @@
             android:layout_weight="1"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/editTextNumberSigned"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberSigned" />
-
-        <Button
-            android:id="@+id/button_update"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:text="+"
-            android:textSize="20sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

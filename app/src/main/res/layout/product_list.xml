@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="120dp"
+            android:layout_width="170dp"
             android:layout_height="70dp"
             android:text="Name"
             android:textAlignment="center"
@@ -33,36 +33,20 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="Price per unit"
             android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="50dp"
-            android:layout_height="70dp"
-            android:text="Quantity left"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/textView18"
-            android:layout_width="60dp"
+            android:layout_width="100dp"
             android:layout_height="70dp"
             android:text="Unit"
             android:textAlignment="center"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="61dp"
-            android:layout_weight="1"
-            android:text="Update quantity"
-            android:textAlignment="center"
-            android:textSize="20sp" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -73,8 +57,9 @@
         android:clickable="true"
 
 
-        app:layout_constraintBottom_toBottomOf="@+id/product_list_recycler_view"
+        android:focusable="true"
 
+        app:layout_constraintBottom_toBottomOf="@+id/product_list_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
