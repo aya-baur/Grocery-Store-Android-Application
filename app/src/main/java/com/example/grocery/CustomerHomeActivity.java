@@ -25,10 +25,10 @@ import java.util.Collections;
 
 public class CustomerHomeActivity extends AppCompatActivity {
     public static ArrayList<StoreNameId> storeNameIds;
-    public static Customer customer;
     public static RecyclerView recyclerView;
     public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static final String STORE_ID = "STORE_ID";
+    public static String customerId;
 
     public static class StoreNameId implements Comparable<StoreNameId> {
         String name;
@@ -50,7 +50,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.customer_home_store_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String customerId = "-438190309";
+        customerId = getIntent().getStringExtra("ID");
 
         CustomerStoresAdapter customerStoresAdapter = new CustomerStoresAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(customerStoresAdapter);
@@ -91,7 +91,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
                         databaseError.toException());
             }
         };
-        ref.addListenerForSingleValueEvent(listener);
+        ref.addValueEventListener(listener);
 
     }
 
@@ -106,9 +106,6 @@ public class CustomerHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                populateStoreList();
-                return true;
             case R.id.menu_logout:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);

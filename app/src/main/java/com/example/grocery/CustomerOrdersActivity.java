@@ -26,21 +26,21 @@ import java.util.Map;
 
 public class CustomerOrdersActivity extends AppCompatActivity {
     public static RecyclerView recyclerView;
-    public static ArrayList<StoreOrder> storeOrders;
     public static final String ORDER_ID = "ORDER_ID";
+    public static String customer_id;
 
-    public static class StoreOrder implements Comparable<StoreOrder> {
+    public static class CustomerOrder implements Comparable<CustomerOrder> {
         String name;
         String storeId;
         Order order;
-        StoreOrder(String name, Order order, String storeId) {
+        CustomerOrder(String name, Order order, String storeId) {
             this.name = name;
             this.order = order;
             this.storeId = storeId;
         }
         @Override
-        public int compareTo(StoreOrder o) {
-            return name.compareTo(o.name);
+        public int compareTo(CustomerOrder o) {
+            return order.compareTo(o.order);
         }
     }
 
@@ -51,21 +51,16 @@ public class CustomerOrdersActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.customer_orders_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        String customer_id = getIntent().getStringExtra(CustomerHomeActivity.CUSTOMER_ID);
 
-        if (storeOrders == null) {
-            populateOrdersDataFromId(customer_id);
-        } else {
-            CustomerOrdersAdapter customerOrdersAdapter = new CustomerOrdersAdapter(this, new ArrayList<>());
-            Collections.sort(storeOrders);
-            customerOrdersAdapter.setData(storeOrders);
-            recyclerView.setAdapter(customerOrdersAdapter);
+        if (getIntent().getStringExtra(CustomerHomeActivity.CUSTOMER_ID) != null) {
+            customer_id = getIntent().getStringExtra(CustomerHomeActivity.CUSTOMER_ID);
         }
+        populateOrdersDataFromId(customer_id);
     }
 
     public void populateOrdersDataFromId(String customerId) {
         CustomerOrdersAdapter customerOrdersAdapter = new CustomerOrdersAdapter(this, new ArrayList<>());
-        storeOrders = new ArrayList<>();
+        ArrayList<CustomerOrder> customerOrders = new ArrayList<>();
         recyclerView.setAdapter(customerOrdersAdapter);
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
@@ -77,12 +72,12 @@ public class CustomerOrdersActivity extends AppCompatActivity {
                     String store_id = String.valueOf(store_order.get("store_id"));
                     String order_id = String.valueOf(store_order.get("order_id"));
                     Store store = dataSnapshot.child("stores").child(store_id).getValue(Store.class);
-                    StoreOrder storeOrder = new StoreOrder(store.getName(), store.getOrders().get(order_id), String.valueOf(store.getId()));
-                    storeOrders.add(storeOrder);
+                    CustomerOrder customerOrder = new CustomerOrder(store.getName(), store.getOrders().get(order_id), String.valueOf(store.getId()));
+                    customerOrders.add(customerOrder);
                 }
                 Log.i("orders change", dataSnapshot.toString());
-                Collections.sort(storeOrders);
-                customerOrdersAdapter.setData(storeOrders);
+                Collections.sort(customerOrders);
+                customerOrdersAdapter.setData(customerOrders);
 
             }
             @Override
@@ -92,34 +87,5 @@ public class CustomerOrdersActivity extends AppCompatActivity {
             }
         };
         ref.addListenerForSingleValueEvent(listener);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.store_owner_home_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                if (CustomerHomeActivity.customer != null) {
-                    populateOrdersDataFromId(String.valueOf(CustomerHomeActivity.customer.getId()));
-                } else {
-                    populateOrdersDataFromId(getIntent().getStringExtra(CustomerHomeActivity.CUSTOMER_ID));
-                }
-                return true;
-            case R.id.menu_logout:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

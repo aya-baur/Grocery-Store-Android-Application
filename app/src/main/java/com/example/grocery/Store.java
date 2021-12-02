@@ -13,6 +13,8 @@ public class Store {
     // orders map order_id to order
     private Map<String, Order> orders;
     public Store() {
+        this.orders = new HashMap<>();
+        this.products = new HashMap<>();
     }
     public Store(String name, String email, String password) {
         this.name = name;

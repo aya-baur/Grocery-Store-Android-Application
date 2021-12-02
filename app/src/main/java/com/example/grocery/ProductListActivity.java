@@ -35,36 +35,23 @@ public class ProductListActivity extends AppCompatActivity {
     public static String store_id;
     public static ProductsListAdapter adapter;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_list);
 
-
-
         recyclerView = findViewById(R.id.product_list_recycler_view);
         add_new = findViewById(R.id.floatingActionButton);
-
-
 
         adapter = new ProductsListAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent intent1 = getIntent();
-
-
-        if (store_id == null) {
+        if (intent1.getStringExtra(ProductListActivity.STORE_ID) != null) {
             store_id = intent1.getStringExtra(ProductListActivity.STORE_ID);
-            populateProductDataFromStoreId(store_id, adapter);
-        } else {
-            populateProductDataFromStoreId(store_id, adapter);
         }
-
-
+        populateProductDataFromStoreId(store_id, adapter);
 
         add_new.setOnClickListener((View view) -> {
 
@@ -79,46 +66,20 @@ public class ProductListActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    Store store = dataSnapshot.getValue(Store.class);
-                    ArrayList<Product> productList = new ArrayList<>(store.getProducts().values());
-                    Log.i("orders change", dataSnapshot.toString());
-                    adapter.setProducts(productList);
-
+                Store store = dataSnapshot.getValue(Store.class);
+                ArrayList<Product> productList = new ArrayList<>(store.getProducts().values());
+                Log.i("orders change", dataSnapshot.toString());
+                adapter.setProducts(productList);
 
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Log.w("warning", "loadPost:onCancelled",
                         databaseError.toException());
             }
         };
-        ref.addListenerForSingleValueEvent(listener);
+        ref.addValueEventListener(listener);
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.product_list_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                if (store_id == null) {
-                    store_id = getIntent().getStringExtra(ProductListActivity.STORE_ID);
-                    populateProductDataFromStoreId(store_id, adapter);
-                } else {
-                    populateProductDataFromStoreId(store_id, adapter);
-                }
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 }

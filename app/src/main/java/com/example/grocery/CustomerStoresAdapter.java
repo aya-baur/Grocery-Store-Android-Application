@@ -52,6 +52,7 @@ public class CustomerStoresAdapter extends RecyclerView.Adapter<CustomerStoresAd
         holder.container.setOnClickListener((View view) -> {
             Intent intent = new Intent(context, CustomerHomeActivity.class);
             intent.putExtra(CustomerHomeActivity.STORE_ID, storeNameIds.get(position).id);
+            intent.putExtra(CustomerHomeActivity.CUSTOMER_ID, CustomerHomeActivity.customerId);
             context.startActivity(intent);
         });
     }

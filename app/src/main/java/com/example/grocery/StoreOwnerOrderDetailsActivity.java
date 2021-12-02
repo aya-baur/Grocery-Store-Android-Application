@@ -25,6 +25,8 @@ public class StoreOwnerOrderDetailsActivity extends AppCompatActivity {
     public static Order order;
     public static ArrayList<Product> products;
     public static ArrayList<Integer> quantities;
+    public static String orderId;
+    public static String storeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,10 @@ public class StoreOwnerOrderDetailsActivity extends AppCompatActivity {
         StoreOwnerOrderDetailsAdapter storeOwnerOrderDetailsAdapter = new StoreOwnerOrderDetailsAdapter(this, new ArrayList<>(), new ArrayList<>());
         recyclerView.setAdapter(storeOwnerOrderDetailsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        String orderId = String.valueOf(getIntent().getIntExtra(StoreOwnerHomeActivity.ORDER_ID, 0));
+        if (getIntent().getStringExtra(StoreOwnerHomeActivity.ORDER_ID) != null) {
+            orderId = getIntent().getStringExtra(StoreOwnerHomeActivity.ORDER_ID);
+            storeId = getIntent().getStringExtra(StoreOwnerHomeActivity.STORE_ID);
+        }
         populateViewDataFromId(orderId, storeOwnerOrderDetailsAdapter);
 
         Button markReady = findViewById(R.id.button_ready_pickup);
