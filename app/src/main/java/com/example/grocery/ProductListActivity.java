@@ -33,7 +33,7 @@ public class ProductListActivity extends AppCompatActivity {
     public static RecyclerView recyclerView;
     public static FloatingActionButton add_new;
     public static String store_id;
-    public static ProductsListAdapter Adapter;
+    public static ProductsListAdapter adapter;
 
 
 
@@ -50,15 +50,20 @@ public class ProductListActivity extends AppCompatActivity {
 
 
 
-        Adapter = new ProductsListAdapter(this, new ArrayList<>());
-        recyclerView.setAdapter(Adapter);
+        adapter = new ProductsListAdapter(this, new ArrayList<>());
+        recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent intent1 = getIntent();
-        store_id = intent1.getStringExtra("STORE_ID");
 
 
-        populateProductDataFromStoreId(store_id, Adapter);
+        if (store_id == null) {
+            store_id = intent1.getStringExtra(ProductListActivity.STORE_ID);
+            populateProductDataFromStoreId(store_id, adapter);
+        } else {
+            populateProductDataFromStoreId(store_id, adapter);
+        }
+
 
 
         add_new.setOnClickListener((View view) -> {
@@ -103,7 +108,12 @@ public class ProductListActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_refresh:
-                    populateProductDataFromStoreId(store_id, Adapter);
+                if (store_id == null) {
+                    store_id = getIntent().getStringExtra(ProductListActivity.STORE_ID);
+                    populateProductDataFromStoreId(store_id, adapter);
+                } else {
+                    populateProductDataFromStoreId(store_id, adapter);
+                }
                 return true;
 
             default:
