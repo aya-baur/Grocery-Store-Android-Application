@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +31,8 @@ public class ProductListActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static RecyclerView recyclerView;
     public static FloatingActionButton add_new;
+    public static String store_id;
+    public static ProductsListAdapter Adapter;
 
 
 
@@ -44,12 +49,15 @@ public class ProductListActivity extends AppCompatActivity {
 
 
 
-        ProductsListAdapter Adapter = new ProductsListAdapter(this, new ArrayList<>());
+        Adapter = new ProductsListAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(Adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        String store_id = getIntent().getStringExtra("STORE_ID");
+        Intent intent1 = getIntent();
+        store_id = intent1.getStringExtra("STORE_ID");
 
+
+        populateProductDataFromStoreId(store_id, Adapter);
 
 
         add_new.setOnClickListener((View view) -> {
@@ -65,10 +73,11 @@ public class ProductListActivity extends AppCompatActivity {
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Store store = dataSnapshot.getValue(Store.class);
-                ArrayList<Product> productList = new ArrayList<>(store.getProducts().values());
-                Log.i("orders change", dataSnapshot.toString());
-                adapter.setProducts(productList);
+                    Store store = dataSnapshot.getValue(Store.class);
+                    ArrayList<Product> productList = new ArrayList<>(store.getProducts().values());
+                    Log.i("orders change", dataSnapshot.toString());
+                    adapter.setProducts(productList);
+
 
             }
             @Override
@@ -79,6 +88,26 @@ public class ProductListActivity extends AppCompatActivity {
         };
         ref.addListenerForSingleValueEvent(listener);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.product_list_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+                    populateProductDataFromStoreId(store_id, Adapter);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
