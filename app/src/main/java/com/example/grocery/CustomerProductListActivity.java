@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,41 +18,55 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ProductListActivity extends AppCompatActivity {
+public class CustomerProductListActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static final String STORE_ID = "STORE_ID";
+    public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static RecyclerView recyclerView;
-    public static FloatingActionButton add_new;
+    public static Button viewCart;
     public static String store_id;
-    public static ProductsListAdapter adapter;
+    public static int customer_id;
+    public static CustomerProductsListAdapter adapter;
+    public static Cart cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_list);
+        setContentView(R.layout.customer_product_list);
+
+        Intent intent1 = getIntent();
+        if (intent1.getStringExtra(CustomerProductListActivity.STORE_ID) != null) {
+            store_id = intent1.getStringExtra(CustomerProductListActivity.STORE_ID);
+        }
+
+        Intent intent2 = getIntent();
+        if (intent2.getStringExtra(CustomerProductListActivity.CUSTOMER_ID) != null) {
+            customer_id = Integer.parseInt(intent2.getStringExtra(CustomerProductListActivity.CUSTOMER_ID));
+        }
+
+
+        CustomerProductListActivity.cart = new Cart(customer_id, "");
+        CustomerProductListActivity.cart.getCustomerName(customer_id);
 
         recyclerView = findViewById(R.id.customer_product_list_recycler_view);
-        add_new = findViewById(R.id.floatingActionButton);
+        viewCart = findViewById(R.id.view_cart);
 
-        adapter = new ProductsListAdapter(this, new ArrayList<>());
+        adapter = new CustomerProductsListAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Intent intent1 = getIntent();
-        if (intent1.getStringExtra(ProductListActivity.STORE_ID) != null) {
-            store_id = intent1.getStringExtra(ProductListActivity.STORE_ID);
-        }
+
         populateProductDataFromStoreId(store_id, adapter);
 
-        add_new.setOnClickListener((View view) -> {
+        viewCart.setOnClickListener((View view) -> {
 
-            Intent intent = new Intent(this, NewProductActivity.class);
-            intent.putExtra("STORE_ID", store_id);
+            Intent intent = new Intent(this, CartActivity.class);
+            intent.putExtra(STORE_ID, store_id);
             this.startActivity(intent);
         });
     }
 
-    public void populateProductDataFromStoreId(String storeId, ProductsListAdapter adapter) {
+    public void populateProductDataFromStoreId(String storeId, CustomerProductsListAdapter adapter) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores").child(storeId);
         ValueEventListener listener = new ValueEventListener() {
             @Override
@@ -72,5 +86,4 @@ public class ProductListActivity extends AppCompatActivity {
         };
         ref.addValueEventListener(listener);
 
-    }
-}
+    }}

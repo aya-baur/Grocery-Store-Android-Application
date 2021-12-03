@@ -59,6 +59,17 @@
             android:exported="true">
         </activity>
         <activity
+            android:name=".CustomerProductListActivity"
+            android:exported="true"
+            android:label="Customer Product List"
+            android:parentActivityName=".CustomerHomeActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CustomerHomeActivity" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="Login">

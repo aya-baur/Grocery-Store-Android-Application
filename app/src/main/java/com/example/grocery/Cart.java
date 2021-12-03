@@ -24,7 +24,7 @@ public class Cart {
 
     public Cart(){}
     public Cart(int ID, String customerName){
-        HashMap<Integer, Integer> products = new HashMap<>();
+        products = new HashMap<>();
         this.customerID = ID;
         this.customerName = customerName;
     }
@@ -41,6 +41,20 @@ public class Cart {
         }
      }
 
+     //method to remove one product from Cart object
+    public void removeFromCart(int productID){
+        if(!products.containsKey(productID)){}
+        else if(products.get(productID) == 1){
+            products.remove(productID);
+        }
+        else{
+            int count = products.get(productID);
+            count = count - 1;
+            products.put(productID, count);
+        }
+    }
+
+    //NOT BEEN USED
      //method to add more than one product to cart
      public void addToCart(int productId, int quantity){
          if(products.containsKey(productId)){
@@ -53,7 +67,7 @@ public class Cart {
          }
      }
 
-     /*
+
     //Don't know if we need this
     public void getCustomerName(int customerID){
         //getting customer name form database
@@ -74,6 +88,6 @@ public class Cart {
         };
         ref.addListenerForSingleValueEvent(listener);
     }
-    */
+
 
 }

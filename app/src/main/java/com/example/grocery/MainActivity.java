@@ -14,13 +14,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.grocery.Model.User;
+import com.example.grocery.Presenter.LoginPresenter;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoginPresenter.View {
 
 
     EditText editTextEmail;
@@ -30,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
     MaterialButton btnLoginAsCustomer;
     MaterialButton btnLoginAsSeller;
     String DB_REF;
-
     TextView txtCreateAccount;
+    LoginPresenter loginPresenter;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +48,15 @@ public class MainActivity extends AppCompatActivity {
         btnLoginAsCustomer=findViewById(R.id.btnLoginAsCustomer);
         btnLoginAsSeller=findViewById(R.id.btnLoginAsSeller);
 
+        loginPresenter=new LoginPresenter(this);
+
 
         btnLoginAsCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 DB_REF="customers";
-                login();
+                loginPresenter.validate(getUser());
 
             }
         });
@@ -61,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 DB_REF="stores";
-                login();
+
+                loginPresenter.validate(getUser());
 
             }
         });
@@ -92,83 +98,74 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void login()
+
+
+    @Override
+    public void onValidateResponse(boolean isValid, String message)
     {
 
-        String USER_EMAIL=editTextEmail.getText().toString();
-        String USER_PASS=editTextPass.getText().toString();
-
-        if(USER_EMAIL.isEmpty())
+        if(isValid)
         {
-            editTextEmail.setError("Required Field");
-            editTextEmail.requestFocus();
-            return;
+            loginPresenter.login(getUser(),DB_REF);
         }
-        if(USER_PASS.isEmpty())
+        else
         {
-            editTextPass.setError("Required Field");
-            editTextPass.requestFocus();
-            return;
+
+            Toast.makeText(MainActivity.this,message,Toast.LENGTH_SHORT).show();
         }
 
-        ProgressDialog progressDialog=new ProgressDialog(this);
+
+    }
+
+    @Override
+    public void onLoginResponse(boolean isError, String message, int logedInAs, User user)
+    {
+
+        if(isError)
+        {
+            Toast.makeText(MainActivity.this,message,Toast.LENGTH_SHORT).show();
+
+        }
+        else
+        {
+
+            if(logedInAs==1)
+            {
+
+                Intent n=new Intent(MainActivity.this, CustomerHomeActivity.class);
+                n.putExtra("ID",user.getId());
+                startActivity(n);
+            }
+            if(logedInAs==2)
+            {
+                Intent n=new Intent(MainActivity.this, StoreOwnerHomeActivity.class);
+                n.putExtra("ID",user.getId());
+                startActivity(n);
+            }
+            }
+        }
+
+
+    @Override
+    public void showProgressBar() {
+        progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Logging In");
         progressDialog.setCancelable(false);
         progressDialog.show();
+    }
 
+    @Override
+    public void hideProgressBar() {
 
-        FirebaseDatabase.getInstance().getReference(DB_REF).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                progressDialog.dismiss();
+        if(progressDialog.isShowing())
+                 progressDialog.dismiss();
+    }
 
-                if(dataSnapshot.exists())
-                {
-
-                    for(DataSnapshot child:dataSnapshot.getChildren())
-                    {
-
-                        String email=child.child("email").getValue().toString();
-                        String password=child.child("password").getValue().toString();
-                        String id=child.child("id").getValue().toString();
-                        if(USER_EMAIL.trim().equalsIgnoreCase(email.trim()) && USER_PASS.equals(password))
-                        {
-
-
-                            if(DB_REF.equals("customers"))
-                            {
-                                Intent n=new Intent(MainActivity.this,CustomerHomeActivity.class);
-                                n.putExtra("ID",id);
-                                startActivity(n);
-                            }
-                            else
-                            {
-
-                                Intent n=new Intent(MainActivity.this,StoreOwnerHomeActivity.class);
-                                n.putExtra("ID",id);
-                                startActivity(n);
-
-                            }
-                            return;
-                        }
-
-                    }
-
-                }
-
-
-                Toast.makeText(MainActivity.this,"Email Or Password Is Wrong",Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                progressDialog.dismiss();
-                Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+    public  User getUser()
+    {
+        User user=new User();
+        user.setEmail(editTextEmail.getText().toString());
+        user.setPassword(editTextPass.getText().toString());
+        return  user;
     }
 }
