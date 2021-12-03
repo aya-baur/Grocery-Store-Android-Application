@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Email"
+        android:inputType="text"
         android:minHeight="48dp" />
 
     <EditText
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:hint="Name"
+        android:inputType="text"
         android:minHeight="48dp" />
 
     <EditText

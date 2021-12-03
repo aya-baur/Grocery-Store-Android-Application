@@ -38,6 +38,7 @@ public class CustomerSignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_sign_up);
 
@@ -45,9 +46,11 @@ public class CustomerSignUp extends AppCompatActivity {
         editTextNameSignUpCustomer = findViewById(R.id.editTextNameSignUpCustomer);
         editTextPassSignUpCustomer = findViewById(R.id.editTextPassSignUpCustomer);
 
-        btnSignUpCustomer = findViewById(R.id.btnLoginAsCustomer);
+        btnSignUpCustomer = findViewById(R.id.btnSignUpCustomer);
 
         btnSignUpCustomer.setOnClickListener(v -> signUpCustomer());
+
+
     }
 
 
@@ -74,8 +77,8 @@ public class CustomerSignUp extends AppCompatActivity {
         }
 
         if (USER_NAME.isEmpty()) {
-            editTextEmailSignUpCustomer.setError("Required Field");
-            editTextEmailSignUpCustomer.requestFocus();
+            editTextNameSignUpCustomer.setError("Required Field");
+            editTextNameSignUpCustomer.requestFocus();
             return;
         }
 

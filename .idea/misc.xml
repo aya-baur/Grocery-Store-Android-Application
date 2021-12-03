@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/layout/customer_orders.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/layout/customer_sign_up.xml" value="0.2178988326848249" />
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/layout/store_owner_order_detail_row.xml" value="0.1640625" />
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/layout/store_owner_orders.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/Rowan German Zander/AndroidStudioProjects/B07Project/app/src/main/res/layout/store_owner_sign_up.xml" value="0.20199275362318841" />
         <entry key="app/src/main/res/drawable/ic_refresh.xml" value="0.1787037037037037" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.21897589726640224" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.23429633554808996" />
