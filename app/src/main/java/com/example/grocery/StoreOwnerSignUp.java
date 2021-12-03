@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StoreOwnerSignUp extends AppCompatActivity {
+    private static boolean idFound;
     EditText editTextEmailSignUpStoreOwner;
     EditText editTextNameSignUpStoreOwner;
     EditText editTextPassSignUpStoreOwner;
@@ -41,6 +43,7 @@ public class StoreOwnerSignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_owner_sign_up);
+        idFound = false;
 
         editTextEmailSignUpStoreOwner = findViewById(R.id.editTextEmailSignUpStoreOwner);
         editTextNameSignUpStoreOwner = findViewById(R.id.editTextNameSignUpStoreOwner);
@@ -95,19 +98,35 @@ public class StoreOwnerSignUp extends AppCompatActivity {
 
         */
         DatabaseReference mDatabase;
-        Integer ID = USER_EMAIL.hashCode();
 
         mDatabase = FirebaseDatabase.getInstance().getReference("stores");
 
         Store newAccount = new Store(USER_NAME, USER_EMAIL, USER_PASS);
-        // Check if already in database
 
-        // Create User
-        mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
+        // Check if id already in database
+        mDatabase.child(String.valueOf(newAccount.getId())).child("email").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email = dataSnapshot.getValue(String.class);
+                if (newAccount.getEmail().equals(email)) {
+                    StoreOwnerSignUp.idFound = true;
+                }
+            }
 
-        Intent n=new Intent(StoreOwnerSignUp.this,StoreOwnerHomeActivity.class);
-        n.putExtra("ID",ID.toString());
-        startActivity(n);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        if (!StoreOwnerSignUp.idFound) {
+            // Create User
+            mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
+
+            Intent n=new Intent(StoreOwnerSignUp.this,StoreOwnerHomeActivity.class);
+            n.putExtra("ID", String.valueOf(newAccount.getId()));
+            startActivity(n);
+        }
 
         /*
 

@@ -30,6 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CustomerSignUp extends AppCompatActivity {
+    private static boolean idFound;
     EditText editTextEmailSignUpCustomer;
     EditText editTextNameSignUpCustomer;
     EditText editTextPassSignUpCustomer;
@@ -42,6 +43,7 @@ public class CustomerSignUp extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_sign_up);
+        idFound = false;
 
         editTextEmailSignUpCustomer = findViewById(R.id.editTextEmailSignUpCustomer);
         editTextNameSignUpCustomer = findViewById(R.id.editTextNameSignUpCustomer);
@@ -105,11 +107,29 @@ public class CustomerSignUp extends AppCompatActivity {
 
         Customer newAccount = new Customer(USER_NAME, USER_EMAIL, USER_PASS);;
 
-        mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
+        // Check if id already in database
+        mDatabase.child(String.valueOf(newAccount.getId())).child("email").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email = dataSnapshot.getValue(String.class);
+                if (newAccount.getEmail().equals(email)) {
+                    CustomerSignUp.idFound = true;
+                }
+            }
 
-        Intent n=new Intent(CustomerSignUp.this,CustomerHomeActivity.class);
-        n.putExtra("ID",ID.toString());
-        startActivity(n);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+        if (!CustomerSignUp.idFound) {
+            mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
+
+            Intent n = new Intent(CustomerSignUp.this, CustomerHomeActivity.class);
+            n.putExtra("ID", String.valueOf(newAccount.getId()));
+            startActivity(n);
+        }
 
         /*
 
