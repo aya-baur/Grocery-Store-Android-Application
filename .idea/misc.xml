@@ -8,6 +8,9 @@
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.23429633554808996" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15640556340065795" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/customer_home.xml" value="0.1096757852077001" />
+        <entry key="app/src/main/res/layout/customer_product_list.xml" value="0.19157608695652173" />
+        <entry key="app/src/main/res/layout/customer_product_list_row.xml" value="0.19723965879921349" />
         <entry key="app/src/main/res/layout/customer_sign_up.xml" value="0.1911231884057971" />
         <entry key="app/src/main/res/layout/new_product_page.xml" value="0.33" />
         <entry key="app/src/main/res/layout/product_list.xml" value="0.1" />

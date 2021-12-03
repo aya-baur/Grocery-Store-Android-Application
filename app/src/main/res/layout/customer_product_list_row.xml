@@ -23,11 +23,17 @@
 
         <TextView
             android:id="@+id/textViewPrice2"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/textViewUnit2"
@@ -36,6 +42,38 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/remove_from_cart_by_one"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:text="-"
+            android:textAlignment="center"
+            android:textSize="8sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/quantity_added"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/add_to_cart_by_one"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:text="+"
+            android:textAlignment="viewStart"
+            android:textSize="8sp"
+            android:visibility="visible" />
 
     </LinearLayout>
 

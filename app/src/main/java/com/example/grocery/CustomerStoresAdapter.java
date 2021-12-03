@@ -50,7 +50,7 @@ public class CustomerStoresAdapter extends RecyclerView.Adapter<CustomerStoresAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.storeName.setText(storeNameIds.get(position).name);
         holder.container.setOnClickListener((View view) -> {
-            Intent intent = new Intent(context, CustomerHomeActivity.class);
+            Intent intent = new Intent(context, CustomerProductListActivity.class);
             intent.putExtra(CustomerHomeActivity.STORE_ID, storeNameIds.get(position).id);
             intent.putExtra(CustomerHomeActivity.CUSTOMER_ID, CustomerHomeActivity.customerId);
             context.startActivity(intent);
