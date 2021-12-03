@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/screen"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -45,12 +46,11 @@
             android:textSize="20sp" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/remove_from_cart_by_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
             app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
         <TextView
@@ -62,12 +62,11 @@
             android:textAlignment="center" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/add_to_cart_by_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
             app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
     </LinearLayout>

@@ -67,7 +67,9 @@ public class Cart {
          }
      }
 
-
+     public int getCustomerID(){
+        return customerID;
+    }
     //Don't know if we need this
     public void getCustomerName(int customerID){
         //getting customer name form database

@@ -12,29 +12,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
-    public static RecyclerView recyclerView;
-    private String customerId;
-    private String storeId;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.cart);
-
-        recyclerView = findViewById(R.id.cart_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        storeId = getIntent().getStringExtra("ID");
-
-        Class<Cart> cart = Cart.class;
-
-        recyclerView.setAdapter();
-
-
-
-        Button placeOrder = findViewById(R.id.button_place_order);
-        placeOrder.setOnClickListener((View view) -> {
-            //write into the stores database
-        });
-    }
-    //Don't forget to restructure the Map<productID : quantity> to the ArrayList<Map<productID : 348034, quantity : 2>>
+//    public static RecyclerView recyclerView;
+//    private int customerId;
+//    private String storeId;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.cart);
+//
+//        recyclerView = findViewById(R.id.cart_recycler_view);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        storeId = getIntent().getStringExtra("ID");
+//        Cart cart = CustomerProductListActivity.cart;
+//        customerId = cart.getCustomerID();
+//
+//
+//        recyclerView.setAdapter();
+//
+//
+//
+//        Button placeOrder = findViewById(R.id.button_place_order);
+//        placeOrder.setOnClickListener((View view) -> {
+//            //write into the stores database
+//        });
+//    }
+//    //Don't forget to restructure the Map<productID : quantity> to the ArrayList<Map<productID : 348034, quantity : 2>>
 }
