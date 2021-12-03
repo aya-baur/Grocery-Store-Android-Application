@@ -1,5 +1,22 @@
 package com.example.grocery;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import android.os.Bundle;
 import android.widget.EditText;
 
@@ -7,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,7 +93,26 @@ public class StoreOwnerSignUp extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        FirebaseDatabase.getInstance().getReference("customers").addListenerForSingleValueEvent(new ValueEventListener() {
+        */
+        DatabaseReference mDatabase;
+        Integer ID = USER_EMAIL.hashCode();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("stores");
+
+        Store newAccount = new Store(USER_NAME, USER_EMAIL, USER_PASS);
+        // Check if already in database
+
+        // Create User
+        mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
+
+        Intent n=new Intent(StoreOwnerSignUp.this,StoreOwnerHomeActivity.class);
+        n.putExtra("ID",ID.toString());
+        startActivity(n);
+
+        /*
+
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 progressDialog.dismiss();
@@ -85,7 +123,7 @@ public class StoreOwnerSignUp extends AppCompatActivity {
                     for(DataSnapshot child:dataSnapshot.getChildren())
                     {
 
-                        String email=child.child("email").getValue().toString();
+                        String email=child.setValue(USER_EMAIL);
                         String password=child.child("password").getValue().toString();
                         String id=child.child("id").getValue().toString();
                         if(USER_EMAIL.trim().equalsIgnoreCase(email.trim()) && USER_PASS.equals(password))

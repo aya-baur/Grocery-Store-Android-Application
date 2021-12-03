@@ -1,6 +1,6 @@
 package com.example.grocery;
 
-/*
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
- */
+
 
 import android.os.Bundle;
 import android.widget.EditText;
@@ -95,6 +96,23 @@ public class CustomerSignUp extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
+        */
+
+        DatabaseReference mDatabase;
+        Integer ID = USER_EMAIL.hashCode();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("customers");
+
+        Customer newAccount = new Customer(USER_NAME, USER_EMAIL, USER_PASS);;
+
+        mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
+
+        Intent n=new Intent(CustomerSignUp.this,CustomerHomeActivity.class);
+        n.putExtra("ID",ID.toString());
+        startActivity(n);
+
+        /*
+
         FirebaseDatabase.getInstance().getReference("customers").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -111,7 +129,7 @@ public class CustomerSignUp extends AppCompatActivity {
                         String id=child.child("id").getValue().toString();
                         if(USER_EMAIL.trim().equalsIgnoreCase(email.trim()) && USER_PASS.equals(password))
                         {
-                            Intent n=new Intent(MainActivity.this,CustomerHomeActivity.class);
+                            Intent n=new Intent(CustomerSignUp.this,CustomerHomeActivity.class);
                             n.putExtra("ID",id);
                             startActivity(n);
                         }
@@ -120,17 +138,20 @@ public class CustomerSignUp extends AppCompatActivity {
                 }
 
 
-                Toast.makeText(MainActivity.this,"Email Or Password Is Wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerSignUp.this,"Email Or Password Is Wrong",Toast.LENGTH_SHORT).show();
 
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 progressDialog.dismiss();
-                Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerSignUp.this,"Error",Toast.LENGTH_SHORT).show();
             }
         });
+
         */
+
 
     }
 
