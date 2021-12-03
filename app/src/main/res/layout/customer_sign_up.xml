@@ -6,18 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    >
+    tools:context=".CustomerSignUp">
 
     <TextView
         android:id="@+id/txtSignUpCustomer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign-Up Customer"
-        android:gravity="center"
         android:layout_marginTop="50dp"
-        android:textSize="28dp"
         android:fontFamily="sans-serif-black"
-        />
+        android:gravity="center"
+        android:text="Customer Sign-Up"
+        android:textSize="28dp" />
 
     <EditText
         android:id="@+id/editTextEmailSignUpCustomer"
@@ -25,6 +24,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:hint="Email"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/editTextNameSignUpCustomer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Name"
         android:minHeight="48dp" />
 
     <EditText
@@ -38,6 +45,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSignUpCustomer"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cornerRadius="10dp"

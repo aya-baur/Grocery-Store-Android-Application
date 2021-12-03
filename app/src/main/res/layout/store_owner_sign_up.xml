@@ -6,21 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    >
+    tools:context=".StoreOwnerSignUp">
 
     <TextView
         android:id="@+id/txtSignUpStore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign-Up Store Owner"
-        android:gravity="center"
         android:layout_marginTop="50dp"
-        android:textSize="28dp"
         android:fontFamily="sans-serif-black"
-        />
+        android:gravity="center"
+        android:text="Store Owner Sign-Up"
+        android:textSize="28dp" />
 
     <EditText
-        android:id="@+id/editTextEmailStore"
+        android:id="@+id/editTextEmailSignUpStoreOwner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -28,7 +27,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editTextStoreName"
+        android:id="@+id/editTextNameSignUpStoreOwner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -36,7 +35,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/editTextPassStore"
+        android:id="@+id/editTextPassSignUpStoreOwner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -45,12 +44,13 @@
         android:minHeight="48dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSignUpStore"
+        android:id="@+id/btnSignUpStoreOwner"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cornerRadius="10dp"
         android:text="Sign-Up"
-        android:backgroundTint="#7CB342"
+        android:backgroundTint="#E53935"
         />
 
 </LinearLayout>
