@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/screen"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/LinearLayout1"
@@ -43,17 +44,14 @@
             android:layout_weight="1"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/remove_from_cart_by_one"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="16dp"
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="-"
-            android:textAlignment="center"
-            android:textSize="8sp"
-            android:visibility="visible" />
+            android:backgroundTint="@color/white"
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
         <TextView
             android:id="@+id/quantity_added"
@@ -63,17 +61,14 @@
             android:layout_weight="1"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/add_to_cart_by_one"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="16dp"
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="+"
-            android:textAlignment="viewStart"
-            android:textSize="8sp"
-            android:visibility="visible" />
+            android:backgroundTint="@color/white"
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
     </LinearLayout>
 

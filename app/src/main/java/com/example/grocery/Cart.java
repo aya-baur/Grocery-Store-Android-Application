@@ -54,6 +54,7 @@ public class Cart {
         }
     }
 
+    //NOT BEEN USED
      //method to add more than one product to cart
      public void addToCart(int productId, int quantity){
          if(products.containsKey(productId)){
