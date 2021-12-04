@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grocery.View.MainActivity;
+
 import java.util.ArrayList;
 
 public class CustomerStoresAdapter extends RecyclerView.Adapter<CustomerStoresAdapter.ViewHolder>{
@@ -51,8 +53,8 @@ public class CustomerStoresAdapter extends RecyclerView.Adapter<CustomerStoresAd
         holder.storeName.setText(storeNameIds.get(position).name);
         holder.container.setOnClickListener((View view) -> {
             Intent intent = new Intent(context, CustomerProductListActivity.class);
-            intent.putExtra(CustomerHomeActivity.STORE_ID, storeNameIds.get(position).id);
-            intent.putExtra(CustomerHomeActivity.CUSTOMER_ID, CustomerHomeActivity.customerId);
+            intent.putExtra(MainActivity.STORE_ID, storeNameIds.get(position).id);
+            intent.putExtra(MainActivity.CUSTOMER_ID, CustomerHomeActivity.customerId);
             context.startActivity(intent);
         });
     }

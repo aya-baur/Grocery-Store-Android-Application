@@ -13,23 +13,23 @@
             android:name=".CustomerSignUp"
             android:exported="false"
             android:label="Customer Sign-Up"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".View.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".View.MainActivity" />
         </activity>
         <activity
             android:name=".StoreOwnerSignUp"
             android:exported="false"
             android:label="Store Owner Sign-Up"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".View.MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".View.MainActivity" />
         </activity>
         <activity
             android:name=".CustomerOrdersActivity"
@@ -70,7 +70,7 @@
                 android:value=".CustomerHomeActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true"
             android:label="Login">
             <intent-filter>

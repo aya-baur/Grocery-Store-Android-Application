@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.grocery.View.MainActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -105,7 +106,7 @@ public class CustomerSignUp extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference("customers");
 
-        Customer newAccount = new Customer(USER_NAME, USER_EMAIL, USER_PASS);;
+        Customer newAccount = new Customer(USER_NAME, USER_EMAIL, USER_PASS);
 
         // Check if id already in database
         mDatabase.child(String.valueOf(newAccount.getId())).child("email").addValueEventListener(new ValueEventListener() {
@@ -127,7 +128,7 @@ public class CustomerSignUp extends AppCompatActivity {
             mDatabase.child(String.valueOf(newAccount.getId())).setValue(newAccount);
 
             Intent n = new Intent(CustomerSignUp.this, CustomerHomeActivity.class);
-            n.putExtra("ID", String.valueOf(newAccount.getId()));
+            n.putExtra(MainActivity.CUSTOMER_ID, String.valueOf(newAccount.getId()));
             startActivity(n);
         }
 

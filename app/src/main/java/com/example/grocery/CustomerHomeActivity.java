@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +27,6 @@ import java.util.Collections;
 public class CustomerHomeActivity extends AppCompatActivity {
     public static ArrayList<StoreNameId> storeNameIds;
     public static RecyclerView recyclerView;
-    public static final String CUSTOMER_ID = "CUSTOMER_ID";
-    public static final String STORE_ID = "STORE_ID";
     public static String customerId;
 
     public static class StoreNameId implements Comparable<StoreNameId> {
@@ -50,7 +49,9 @@ public class CustomerHomeActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.customer_home_store_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        customerId = getIntent().getStringExtra("ID");
+        if (getIntent().getStringExtra(MainActivity.CUSTOMER_ID) != null) {
+            customerId = getIntent().getStringExtra(MainActivity.CUSTOMER_ID);
+        }
 
         CustomerStoresAdapter customerStoresAdapter = new CustomerStoresAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(customerStoresAdapter);
@@ -60,7 +61,7 @@ public class CustomerHomeActivity extends AppCompatActivity {
         Button myProducts = findViewById(R.id.customer_orders_button);
         myProducts.setOnClickListener((View view) -> {
             Intent intent = new Intent(this, CustomerOrdersActivity.class);
-            intent.putExtra(CustomerHomeActivity.CUSTOMER_ID, customerId);
+            intent.putExtra(MainActivity.CUSTOMER_ID, customerId);
             this.startActivity(intent);
         });
     }

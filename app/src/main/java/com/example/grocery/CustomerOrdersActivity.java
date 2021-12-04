@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,8 +53,8 @@ public class CustomerOrdersActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.customer_orders_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        if (getIntent().getStringExtra(CustomerHomeActivity.CUSTOMER_ID) != null) {
-            customer_id = getIntent().getStringExtra(CustomerHomeActivity.CUSTOMER_ID);
+        if (getIntent().getStringExtra(MainActivity.CUSTOMER_ID) != null) {
+            customer_id = getIntent().getStringExtra(MainActivity.CUSTOMER_ID);
         }
         populateOrdersDataFromId(customer_id);
     }

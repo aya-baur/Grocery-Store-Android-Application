@@ -21,6 +21,7 @@
     <string name="quantity_left_less_than_0">"Quantity cannot be less than 0"</string>
     <!-- Strings related to store owner home page -->
     <string name="store_owner_orders_page">Store Home</string>
+    <string name="store_home_orders_title">Store Orders</string>
     <string-array name="statuses">
         <item>Created</item>
         <item>Waiting Pickup</item>

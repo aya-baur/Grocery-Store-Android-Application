@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,7 +20,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class CustomerProductListActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     public static final String STORE_ID = "STORE_ID";
     public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static RecyclerView recyclerView;
@@ -35,13 +35,13 @@ public class CustomerProductListActivity extends AppCompatActivity {
         setContentView(R.layout.customer_product_list);
 
         Intent intent1 = getIntent();
-        if (intent1.getStringExtra(CustomerProductListActivity.STORE_ID) != null) {
-            store_id = intent1.getStringExtra(CustomerProductListActivity.STORE_ID);
+        if (intent1.getStringExtra(MainActivity.STORE_ID) != null) {
+            store_id = intent1.getStringExtra(MainActivity.STORE_ID);
         }
 
         Intent intent2 = getIntent();
-        if (intent2.getStringExtra(CustomerProductListActivity.CUSTOMER_ID) != null) {
-            customer_id = Integer.parseInt(intent2.getStringExtra(CustomerProductListActivity.CUSTOMER_ID));
+        if (intent2.getStringExtra(MainActivity.CUSTOMER_ID) != null) {
+            customer_id = Integer.parseInt(intent2.getStringExtra(MainActivity.CUSTOMER_ID));
         }
 
 

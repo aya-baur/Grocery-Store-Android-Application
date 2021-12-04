@@ -15,8 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,8 +46,8 @@ public class StoreOwnerHomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        if (getIntent().getStringExtra("ID") != null) {
-            store_id = getIntent().getStringExtra("ID");
+        if (getIntent().getStringExtra(MainActivity.STORE_ID) != null) {
+            store_id = getIntent().getStringExtra(MainActivity.STORE_ID);
 
         }
         populateStoreDataFromId(store_id);

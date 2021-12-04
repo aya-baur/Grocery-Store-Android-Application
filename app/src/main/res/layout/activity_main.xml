@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context=".MainActivity">
+    tools:context=".View.MainActivity">
 
 
 
@@ -17,7 +17,7 @@
         android:text="Login"
         android:gravity="center"
         android:layout_marginTop="50dp"
-        android:textSize="28dp"
+        android:textSize="28sp"
         android:fontFamily="sans-serif-black"
         />
     <EditText

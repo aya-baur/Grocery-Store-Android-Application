@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.grocery.View.MainActivity;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -58,7 +60,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<CustomerOrdersAd
         holder.container.setOnClickListener((View view) -> {
             Intent intent = new Intent(context, CustomerOrderDetailsActivity.class);
             intent.putExtra(CustomerOrdersActivity.ORDER_ID, order.getId());
-            intent.putExtra(CustomerHomeActivity.STORE_ID, customerOrders.get(position).storeId);
+            intent.putExtra(MainActivity.STORE_ID, customerOrders.get(position).storeId);
             context.startActivity(intent);
         });
     }

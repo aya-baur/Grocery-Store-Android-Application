@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ public class CustomerProductsListAdapter extends RecyclerView.Adapter<CustomerPr
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView testView1, testView2, testView4, quantity;
-        Button addToCart, removeFromCart;
+        ImageButton addToCart, removeFromCart;
 
         public ViewHolder(View view) {
             super(view);
@@ -66,7 +67,7 @@ public class CustomerProductsListAdapter extends RecyclerView.Adapter<CustomerPr
             {
                 Cart.CartItem cartItem = new Cart.CartItem(product.getPrice(), product.getUnit(), product.getName());
                 CustomerProductListActivity.cart.addToCart(product.getId(), cartItem);
-                holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(product.getId())));
+                holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(product.getId()).quantity));
 
 
 

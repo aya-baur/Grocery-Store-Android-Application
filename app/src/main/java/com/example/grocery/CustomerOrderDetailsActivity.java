@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,7 +48,7 @@ public class CustomerOrderDetailsActivity extends AppCompatActivity {
     }
     public void populateViewDataFromId(String orderId, StoreOwnerOrderDetailsAdapter storeOwnerOrderDetailsAdapter) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores")
-                .child(String.valueOf(getIntent().getStringExtra(CustomerHomeActivity.STORE_ID)));
+                .child(String.valueOf(getIntent().getStringExtra(MainActivity.STORE_ID)));
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

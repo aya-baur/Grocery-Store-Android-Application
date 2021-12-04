@@ -12,6 +12,7 @@ public class Customer {
     // order_data maps index to order_id and store_id
     private ArrayList<Map<String, Integer>> orders_data;
     public Customer() {
+        this.orders_data = new ArrayList<>();
     }
     public Customer(String name, String email, String password) {
         this.name = name;
