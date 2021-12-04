@@ -37,12 +37,6 @@
             android:layout_weight="1"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
         <ImageButton
             android:id="@+id/cart_remove_btn"
             android:layout_width="wrap_content"
@@ -68,6 +62,21 @@
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:backgroundTint="#8BB00020"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

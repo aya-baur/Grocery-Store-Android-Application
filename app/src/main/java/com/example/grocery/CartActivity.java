@@ -15,6 +15,7 @@ public class CartActivity extends AppCompatActivity {
 //    public static RecyclerView recyclerView;
 //    private int customerId;
 //    private String storeId;
+//    ArrayList<Product> products;
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class CartActivity extends AppCompatActivity {
 //        customerId = cart.getCustomerID();
 //
 //
+//
 //        recyclerView.setAdapter();
 //
 //
@@ -37,5 +39,5 @@ public class CartActivity extends AppCompatActivity {
 //            //write into the stores database
 //        });
 //    }
-//    //Don't forget to restructure the Map<productID : quantity> to the ArrayList<Map<productID : 348034, quantity : 2>>
+    //Don't forget to restructure the Map<productID : quantity> to the ArrayList<Map<productID : 348034, quantity : 2>>
 }

@@ -160,4 +160,5 @@
     </string-array>
     <string name="place_order">Place Order</string>
     <string name="store_name">Store</string>
+    <string name="remove_from_cart">Remove from Cart</string>
 </resources>

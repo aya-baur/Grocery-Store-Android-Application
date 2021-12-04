@@ -59,13 +59,14 @@ public class CustomerProductsListAdapter extends RecyclerView.Adapter<CustomerPr
         holder.testView1.setText(Products.get(position).getName());
         holder.testView2.setText(NumberFormat.getCurrencyInstance().format(Products.get(position).getPrice()));
         holder.testView4.setText(Products.get(position).getUnit());
-        int id = Products.get(position).getId();
+        Product product = Products.get(position);
         holder.addToCart.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
             {
-            CustomerProductListActivity.cart.addToCart(id);
-            holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(id)));
+                Cart.CartItem cartItem = new Cart.CartItem(product.getPrice(), product.getUnit(), product.getName());
+                CustomerProductListActivity.cart.addToCart(product.getId(), cartItem);
+                holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(product.getId())));
 
 
 
@@ -76,9 +77,10 @@ public class CustomerProductsListAdapter extends RecyclerView.Adapter<CustomerPr
         {
             public void onClick(View view)
             {
-                CustomerProductListActivity.cart.removeFromCart(id);
-                if (CustomerProductListActivity.cart.products.containsKey(id)) {
-                holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(id)));
+                CustomerProductListActivity.cart.removeFromCart(product.getId());
+                if (CustomerProductListActivity.cart.products.containsKey(product.getId())) {
+                    holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(product.getId()).quantity));
+
                 }
                 else {
                     holder.quantity.setText("");
