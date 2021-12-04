@@ -1,10 +1,12 @@
 package com.example.grocery;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +22,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView productName, price, quantity, unit;
-        Button add, remove, delete;
+        ImageButton add, remove, delete;
 
         public ViewHolder(View view) {
             super(view);
@@ -61,17 +63,35 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.quantity.setText(productsToCartItem.get(position).quantity);
         //have to have two lines below to avoid an error :p
         Cart.CartItem cartItem = productsToCartItem.get(position);
-        int productId = position; //TODO make sure that position == productId
-        holder.add.setOnClickListener(new View.OnClickListener(){
+        int productId = position;
+        holder.remove.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //need increase the number of items to be bought
+                //need decrease the number of items to be bought
                 //if there is more than 1
                 if(cartItem.quantity > 1){
                     cartItem.quantity--;
+                    holder.quantity.setText(cartItem.quantity);
                 }else{
                     productsToCartItem.remove(productId);
+                    notifyItemRemoved(productId);
+                    notifyItemRangeChanged(productId, productsToCartItem.size()); //productsToCartItem.size() - position (?)
                 }
+            }
+        });
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cartItem.quantity++;
+                holder.quantity.setText(cartItem.quantity);
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                productsToCartItem.remove(productId);
+                notifyItemRemoved(productId);
+                notifyItemRangeChanged(productId, productsToCartItem.size()); //productsToCartItem.size() - position (?)
             }
         });
     }

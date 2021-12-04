@@ -55,6 +55,17 @@
                 android:value=".CustomerOrdersActivity" />
         </activity>
         <activity
+            android:name=".CartActivity"
+            android:exported="false"
+            android:label="Cart"
+            android:parentActivityName=".CustomerProductListActivity" >
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CustomerProductListActivity" />
+        </activity>
+        <activity
             android:name=".CustomerHomeActivity"
             android:exported="true">
         </activity>
