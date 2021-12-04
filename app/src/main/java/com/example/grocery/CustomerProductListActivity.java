@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +29,7 @@ public class CustomerProductListActivity extends AppCompatActivity {
     public static int customer_id;
     public static CustomerProductsListAdapter adapter;
     public static Cart cart;
+    public static String storeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class CustomerProductListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Store store = dataSnapshot.getValue(Store.class);
+                storeName = store.getName();
                 ArrayList<Product> productList = new ArrayList<>(store.getProducts().values());
                 Log.i("orders change", dataSnapshot.toString());
                 adapter.setProducts(productList);

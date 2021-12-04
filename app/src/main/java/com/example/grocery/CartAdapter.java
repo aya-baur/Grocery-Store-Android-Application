@@ -13,12 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     private final Context context;
     HashMap<Integer, Cart.CartItem> productsToCartItem;
+    ArrayList<Cart.CartItem> itemsList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView productName, price, quantity, unit;
@@ -39,10 +41,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public CartAdapter(Context context, HashMap<Integer, Cart.CartItem> productsToCartItem){
         this.context = context;
         this.productsToCartItem = productsToCartItem;
+        itemsList = new ArrayList<>(productsToCartItem.values());
     }
 
     public void setProductsToCartItem(HashMap<Integer, Cart.CartItem> products){
         this.productsToCartItem = products;
+        itemsList = new ArrayList<>(productsToCartItem.values());
         this.notifyDataSetChanged();
     }
 
@@ -57,41 +61,54 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
-        holder.productName.setText(productsToCartItem.get(position).productName);
-        holder.price.setText(NumberFormat.getCurrencyInstance().format(productsToCartItem.get(position).price));
-        holder.unit.setText(productsToCartItem.get(position).unit);
-        holder.quantity.setText(productsToCartItem.get(position).quantity);
+        holder.productName.setText(itemsList.get(position).productName);
+        holder.price.setText(NumberFormat.getCurrencyInstance().format(itemsList.get(position).price));
+        holder.unit.setText(itemsList.get(position).unit);
+        holder.quantity.setText(Integer.toString(itemsList.get(position).quantity));
         //have to have two lines below to avoid an error :p
-        Cart.CartItem cartItem = productsToCartItem.get(position);
-        int productId = position;
+        Cart.CartItem cartItem = itemsList.get(position);
+        int p = position;
         holder.remove.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 //need decrease the number of items to be bought
                 //if there is more than 1
+                if (context instanceof CartActivity) {
+                    ((CartActivity)context).addSubtotal(-1*cartItem.price);
+                }
                 if(cartItem.quantity > 1){
-                    cartItem.quantity--;
-                    holder.quantity.setText(cartItem.quantity);
+                    //cartItem.quantity--;
+                    productsToCartItem.get(cartItem.productId).quantity--;
+                    holder.quantity.setText(Integer.toString(cartItem.quantity));
                 }else{
-                    productsToCartItem.remove(productId);
-                    notifyItemRemoved(productId);
-                    notifyItemRangeChanged(productId, productsToCartItem.size()); //productsToCartItem.size() - position (?)
+                    productsToCartItem.remove(itemsList.get(p).productId);
+                    itemsList.remove(p);
+                    notifyItemRemoved(p);
+                    notifyItemRangeChanged(p, itemsList.size());
                 }
             }
         });
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cartItem.quantity++;
-                holder.quantity.setText(cartItem.quantity);
+                //cartItem.quantity++;
+                if (context instanceof CartActivity) {
+                    ((CartActivity)context).addSubtotal(cartItem.price);
+                }
+                productsToCartItem.get(cartItem.productId).quantity++;
+                holder.quantity.setText(Integer.toString(cartItem.quantity));
             }
         });
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                productsToCartItem.remove(productId);
-                notifyItemRemoved(productId);
-                notifyItemRangeChanged(productId, productsToCartItem.size()); //productsToCartItem.size() - position (?)
+                if (context instanceof CartActivity) {
+                    ((CartActivity)context).addSubtotal(-1*cartItem.price*cartItem.quantity);
+                }
+                productsToCartItem.remove(itemsList.get(p).productId);
+                itemsList.remove(p);
+                notifyItemRemoved(p);
+                notifyItemRangeChanged(p, productsToCartItem.size());
             }
         });
     }

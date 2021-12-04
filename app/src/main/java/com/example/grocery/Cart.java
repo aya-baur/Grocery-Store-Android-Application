@@ -27,11 +27,13 @@ public class Cart {
         double price;
         String unit;
         String productName;
-        public CartItem(double p, String u, String pN){
+        int productId;
+        public CartItem(double p, String u, String pN, int productId){
             quantity = 1;
             price = p;
             unit = u;
             productName = pN;
+            this.productId = productId;
         }
     }
     //Constructor of Order class
