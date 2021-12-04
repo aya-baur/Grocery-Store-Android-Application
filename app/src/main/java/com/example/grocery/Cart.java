@@ -19,7 +19,7 @@ public class Cart {
     HashMap<Integer,CartItem> products;
 //    ArrayList<Product> orderedProducts;
     private int customerID;
-    private String customerName;
+    public String customerName;
 
 
     public static class CartItem{

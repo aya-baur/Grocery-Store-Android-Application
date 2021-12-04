@@ -1,10 +1,12 @@
 package com.example.grocery;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +22,7 @@ public class CustomerProductsListAdapter extends RecyclerView.Adapter<CustomerPr
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView testView1, testView2, testView4, quantity;
-        Button addToCart, removeFromCart;
+        ImageButton addToCart, removeFromCart;
 
         public ViewHolder(View view) {
             super(view);
