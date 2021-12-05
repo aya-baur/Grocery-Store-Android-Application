@@ -38,13 +38,9 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
         loginPresenter=new LoginPresenter(new User(), this);
 
 
-        btnLoginAsCustomer.setOnClickListener(view -> {
-            loginPresenter.validate(User.CUSTOMER_TYPE, true);
-        });
+        btnLoginAsCustomer.setOnClickListener(view -> loginPresenter.validate(User.CUSTOMER_TYPE, false));
 
-        btnLoginAsSeller.setOnClickListener(view -> {
-            loginPresenter.validate(User.STORE_TYPE, true);
-        });
+        btnLoginAsSeller.setOnClickListener(view -> loginPresenter.validate(User.STORE_TYPE, false));
 
         txtCreateAccount.setOnClickListener(view -> {
             new AlertDialog.Builder(this).setPositiveButton("Create Account As Customer", (DialogInterface dialog, int which) -> {

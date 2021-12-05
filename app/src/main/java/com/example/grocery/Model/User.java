@@ -109,7 +109,6 @@ public class User implements LoginContract.Model{
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if(dataSnapshot.child(String.valueOf(user.getId())).exists()) {
                     if (!signUp) {
                         if (user.getPassword().equals(dataSnapshot.child(String.valueOf(user.getId())).child("password").getValue(String.class))) {
