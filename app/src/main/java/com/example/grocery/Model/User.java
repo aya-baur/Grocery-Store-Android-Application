@@ -113,13 +113,15 @@ public class User implements LoginContract.Model{
                     if (!signUp) {
                         if (user.getPassword().equals(dataSnapshot.child(String.valueOf(user.getId())).child("password").getValue(String.class))) {
                             presenter.loginResponse(false, "Success");
+                        } else {
+                            presenter.loginResponse(true, "Incorrect Password");
                         }
                     } else {
                         presenter.loginResponse(true, "User Already Exists");
                     }
                 } else {
                     if (!signUp) {
-                        presenter.loginResponse(true,"Email Or Password Is Wrong");
+                        presenter.loginResponse(true,"Email Not Found");
                     } else {
                         Store newAccount = new Store(user.name, user.email, user.password);
 
