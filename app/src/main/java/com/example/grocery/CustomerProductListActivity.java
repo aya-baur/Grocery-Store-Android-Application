@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.grocery.View.MainActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -44,11 +45,9 @@ public class CustomerProductListActivity extends AppCompatActivity {
         Intent intent2 = getIntent();
         if (intent2.getStringExtra(MainActivity.CUSTOMER_ID) != null) {
             customer_id = Integer.parseInt(intent2.getStringExtra(MainActivity.CUSTOMER_ID));
+            CustomerProductListActivity.cart = new Cart(customer_id, "");
+            CustomerProductListActivity.cart.getCustomerName(customer_id);
         }
-
-
-        CustomerProductListActivity.cart = new Cart(customer_id, "");
-        CustomerProductListActivity.cart.getCustomerName(customer_id);
 
         recyclerView = findViewById(R.id.customer_product_list_recycler_view);
         viewCart = findViewById(R.id.view_cart);
@@ -61,10 +60,13 @@ public class CustomerProductListActivity extends AppCompatActivity {
         populateProductDataFromStoreId(store_id, adapter);
 
         viewCart.setOnClickListener((View view) -> {
-
-            Intent intent = new Intent(this, CartActivity.class);
-            intent.putExtra(STORE_ID, store_id);
-            this.startActivity(intent);
+            if(cart.products.isEmpty()) {
+                Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(this, CartActivity.class);
+                intent.putExtra(STORE_ID, store_id);
+                this.startActivity(intent);
+            }
         });
     }
 

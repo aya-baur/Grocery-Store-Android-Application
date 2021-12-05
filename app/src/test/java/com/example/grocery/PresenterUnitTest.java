@@ -28,35 +28,6 @@ public class PresenterUnitTest {
     User user;
 
     @Test
-    public void testPresenter(){
-
-        /*** stubbing ***/
-//        when(view.getEmail()).thenReturn("");
-//
-//        LoginPresenter presenter = new LoginPresenter(user, view);
-//        presenter.checkUsername();
-
-        /*** verifying a method call with a specific value ***/
-//        verify(view).writeToast("user found");
-
-        /*** verifying a method call with any value ***/
-        //verify(view).displayMessage(anyString());
-
-        /*** verifying a certain number of method calls ***/
-        //verify(view, times(2)).displayMessage("user found");
-
-        /*** Argument captors ***/
-        //ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        //verify(view).displayMessage(captor.capture());
-        //assertEquals(captor.getValue(), "user found");
-
-        /*** Verifying order ***/
-        //InOrder order = inOrder(model, view);
-        //order.verify(model).userExists("abc");
-        //order.verify(view).displayMessage("user found");
-    }
-
-    @Test
     public void validateEmailEmpty() {
         when(view.getEmail()).thenReturn("");
         when(view.getPass()).thenReturn("abc");
