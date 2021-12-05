@@ -62,7 +62,7 @@ public class PresenterUnitTest {
         when(view.getPass()).thenReturn("abc");
 
         LoginPresenter presenter = new LoginPresenter(user, view);
-        presenter.validate(0);
+        presenter.validate(0, false);
 
         InOrder order = inOrder(view);
         order.verify(view).showProgressBar();
@@ -76,7 +76,7 @@ public class PresenterUnitTest {
         when(view.getPass()).thenReturn("");
 
         LoginPresenter presenter = new LoginPresenter(user, view);
-        presenter.validate(0);
+        presenter.validate(0, false);
 
         InOrder order = inOrder(view);
         order.verify(view).showProgressBar();
@@ -88,15 +88,15 @@ public class PresenterUnitTest {
     public void validateNonEmptyFields() {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("abc");
-        doNothing().when(user).checkLoginExists(anyObject());
+        doNothing().when(user).checkLoginExists(anyObject(), false);
 
         LoginPresenter presenter = new LoginPresenter(user, view);
 
-        presenter.validate(0);
+        presenter.validate(0, false);
 
         InOrder order = inOrder(view, user);
         order.verify(view).showProgressBar();
-        order.verify(user).checkLoginExists(presenter);
+        order.verify(user).checkLoginExists(presenter, false);
     }
 
     @Test
