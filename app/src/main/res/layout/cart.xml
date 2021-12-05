@@ -112,7 +112,7 @@
         app:layout_constraintStart_toStartOf="@+id/cartScrollView" />
 
     <TextView
-        android:id="@+id/order_sub_total"
+        android:id="@+id/cart_sub_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/cart_subtotal"
@@ -124,18 +124,18 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/tax"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/cart_total"
         app:layout_constraintStart_toStartOf="@+id/cart_subtotal" />
 
     <TextView
-        android:id="@+id/order_tax"
+        android:id="@+id/cart_tax_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/cart_tax"
         app:layout_constraintStart_toEndOf="@+id/cart_tax" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/cart_total"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -147,8 +147,8 @@
         android:id="@+id/cart_order_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintStart_toEndOf="@+id/textView14" />
+        app:layout_constraintBottom_toBottomOf="@+id/cart_total"
+        app:layout_constraintStart_toEndOf="@+id/cart_total" />
 
     <Button
         android:id="@+id/button_place_order"
