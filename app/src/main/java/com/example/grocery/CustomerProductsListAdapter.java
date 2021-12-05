@@ -62,6 +62,9 @@ public class CustomerProductsListAdapter extends RecyclerView.Adapter<CustomerPr
         holder.testView2.setText(NumberFormat.getCurrencyInstance().format(Products.get(position).getPrice()));
         holder.testView4.setText(Products.get(position).getUnit());
         Product product = Products.get(position);
+        if (CustomerProductListActivity.cart.products.containsKey(product.getId())) {
+            holder.quantity.setText(String.valueOf(CustomerProductListActivity.cart.products.get(product.getId()).quantity));
+        }
         holder.addToCart.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
