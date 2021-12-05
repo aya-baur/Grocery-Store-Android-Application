@@ -20,7 +20,7 @@ public interface LoginContract {
 
         //Use for SignUp
         public String getName();
-        public void setName(String email);
+        public void setName(String name);
 
         public String getPassword();
         public void setPassword(String password);

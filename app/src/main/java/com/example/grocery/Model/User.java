@@ -34,7 +34,7 @@ public class User implements LoginContract.Model{
         generateId();
     }
     // For use in Sign Up
-    public User(String email,String name, String password, int userType) {
+    public User(String email, String name, String password, int userType) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -73,7 +73,7 @@ public class User implements LoginContract.Model{
     }
 
     @Override
-    public void setName(String email) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -123,9 +123,15 @@ public class User implements LoginContract.Model{
                     if (!signUp) {
                         presenter.loginResponse(true,"Email Not Found");
                     } else {
-                        Store newAccount = new Store(user.name, user.email, user.password);
 
-                        mDatabase.child(String.valueOf(user.getId())).setValue(newAccount);
+                        if (userType == 0) {
+                            Customer newAccount = new Customer(user.name, user.email, user.password);
+                            mDatabase.child(String.valueOf(user.getId())).setValue(newAccount);
+                        } else {
+                            Store newAccount = new Store(user.name, user.email, user.password);
+                            mDatabase.child(String.valueOf(user.getId())).setValue(newAccount);
+                        }
+
 
                         presenter.loginResponse(false, "Created");
                     }
