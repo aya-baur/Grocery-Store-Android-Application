@@ -1,15 +1,12 @@
 package com.example.grocery.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.grocery.Contract.LoginContract;
 import com.example.grocery.CustomerHomeActivity;
@@ -19,57 +16,42 @@ import com.example.grocery.R;
 import com.example.grocery.StoreOwnerHomeActivity;
 import com.google.android.material.button.MaterialButton;
 
-public class MainActivity extends AppCompatActivity implements LoginContract.View {
+
+public class CustomerSignUp extends AppCompatActivity implements LoginContract.View{
     public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static final String STORE_ID = "STORE_ID";
+
+    MaterialButton btnSignUpCustomer;
 
     private LoginPresenter loginPresenter;
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.customer_sign_up);
 
-        MaterialButton btnLoginAsCustomer = findViewById(R.id.btnLoginAsCustomer);
-        MaterialButton btnLoginAsSeller = findViewById(R.id.btnLoginAsSeller);
-        TextView txtCreateAccount = findViewById(R.id.txtCreateAccount);
-
+        btnSignUpCustomer = findViewById(R.id.btnSignUpCustomer);
         loginPresenter=new LoginPresenter(new User(), this);
 
+        btnSignUpCustomer.setOnClickListener(v -> loginPresenter.validate(User.CUSTOMER_TYPE, true));
 
-        btnLoginAsCustomer.setOnClickListener(view -> {
-            loginPresenter.validate(User.CUSTOMER_TYPE, true);
-        });
-
-        btnLoginAsSeller.setOnClickListener(view -> {
-            loginPresenter.validate(User.STORE_TYPE, true);
-        });
-
-        txtCreateAccount.setOnClickListener(view -> {
-            new AlertDialog.Builder(this).setPositiveButton("Create Account As Customer", (DialogInterface dialog, int which) -> {
-                Intent intent = new Intent(MainActivity.this, CustomerSignUp.class);
-                startActivity(intent);
-            }).setNeutralButton("Create Account As Store Owner ", (DialogInterface dialog, int which) -> {
-                Intent intent = new Intent(MainActivity.this, StoreOwnerSignUp.class);
-                startActivity(intent);
-            }).show();
-        });
     }
 
     @Override
     public EditText getEditTextEmail() {
-        return findViewById(R.id.editTextEmail);
+        return findViewById(R.id.editTextEmailSignUpCustomer);
     }
 
     @Override
     public EditText getEditTextName() {
-        return null;
+        return findViewById(R.id.editTextNameSignUpCustomer);
     }
 
     @Override
     public EditText getEditTextPassword() {
-        return findViewById(R.id.editTextPass);
+        return findViewById(R.id.editTextPassSignUpCustomer);
     }
 
     @Override
@@ -79,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
 
     @Override
     public String getName() {
-        return null;
+        return getEditTextName().getText().toString();
     }
 
     @Override
@@ -109,15 +91,15 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
     @Override
     public void showProgressBar() {
         progressDialog=new ProgressDialog(this);
-        progressDialog.setMessage("Logging In");
+        progressDialog.setMessage("Signing Up");
         progressDialog.setCancelable(false);
         progressDialog.show();
     }
 
     @Override
     public void hideProgressBar() {
-
         if(progressDialog.isShowing())
-                 progressDialog.dismiss();
+            progressDialog.dismiss();
     }
+
 }

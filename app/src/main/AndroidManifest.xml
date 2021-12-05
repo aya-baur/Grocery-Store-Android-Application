@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Grocery" >
         <activity
-            android:name=".CustomerSignUp"
+            android:name=".View.CustomerSignUp"
             android:exported="false"
             android:label="Customer Sign-Up"
             android:parentActivityName=".View.MainActivity">
@@ -21,7 +21,7 @@
                 android:value=".View.MainActivity" />
         </activity>
         <activity
-            android:name=".StoreOwnerSignUp"
+            android:name=".View.StoreOwnerSignUp"
             android:exported="false"
             android:label="Store Owner Sign-Up"
             android:parentActivityName=".View.MainActivity">

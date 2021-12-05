@@ -1,12 +1,16 @@
 package com.example.grocery.Model;
 
+import android.widget.EditText;
+
 import androidx.annotation.NonNull;
 
 import com.example.grocery.Contract.LoginContract;
 import com.example.grocery.Customer;
+import com.example.grocery.Presenter.LoginPresenter;
 import com.example.grocery.Store;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -18,6 +22,7 @@ public class User implements LoginContract.Model{
 
     private int id;
     private String email;
+    private String name;
     private String password;
     private int userType;
 
@@ -25,6 +30,14 @@ public class User implements LoginContract.Model{
     public User(String email, String password, int userType) {
         this.email = email;
         this.password = password;
+        this.userType = userType;
+        generateId();
+    }
+    // For use in Sign Up
+    public User(String email,String name, String password, int userType) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
         this.userType = userType;
         generateId();
     }
@@ -55,6 +68,16 @@ public class User implements LoginContract.Model{
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String email) {
+        this.name = name;
+    }
+
+    @Override
     public String getPassword() {
         return password;
     }
@@ -75,22 +98,38 @@ public class User implements LoginContract.Model{
     }
 
     @Override
-    public void checkLoginExists(LoginContract.Presenter presenter) {
+    public void checkLoginExists(LoginContract.Presenter presenter, boolean signUp) {
         String refPath = userType == 0? User.CUSTOMER_DB : User.STORE_DB;
         User user = this;
-        FirebaseDatabase.getInstance().getReference(refPath).addListenerForSingleValueEvent(new ValueEventListener() {
+
+        DatabaseReference mDatabase;
+
+        mDatabase = FirebaseDatabase.getInstance().getReference(refPath);
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if(dataSnapshot.child(String.valueOf(user.getId())).exists())
-                {
-                    if(user.getPassword().equals(dataSnapshot.child(String.valueOf(user.getId())).child("password").getValue(String.class)))
-                    {
-                        presenter.loginResponse(false, "Success");
-                        return;
+                if(dataSnapshot.child(String.valueOf(user.getId())).exists()) {
+                    if (!signUp) {
+                        if (user.getPassword().equals(dataSnapshot.child(String.valueOf(user.getId())).child("password").getValue(String.class))) {
+                            presenter.loginResponse(false, "Success");
+                        }
+                    } else {
+                        presenter.loginResponse(true, "User Already Exists");
+                    }
+                } else {
+                    if (!signUp) {
+                        presenter.loginResponse(true,"Email Or Password Is Wrong");
+                    } else {
+                        Store newAccount = new Store(user.name, user.email, user.password);
+
+                        mDatabase.child(String.valueOf(user.getId())).setValue(newAccount);
+
+                        presenter.loginResponse(false, "Created");
                     }
                 }
-                presenter.loginResponse(true,"Email Or Password Is Wrong");
+
             }
 
             @Override
