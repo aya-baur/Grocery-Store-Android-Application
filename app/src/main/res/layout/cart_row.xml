@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,27 +15,38 @@
 
         <TextView
             android:id="@+id/product_name"
-            android:layout_width="150dp"
+            android:layout_width="103dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
+            android:minWidth="120dp"
             android:textAlignment="center"
             android:textSize="17sp" />
 
         <TextView
             android:id="@+id/cart_price"
-            android:layout_width="77dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/cart_unit"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
+            android:minWidth="100dp"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/cart_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:minWidth="50dp"
+            android:textAlignment="viewStart"
             android:textSize="20sp" />
 
         <ImageButton
@@ -44,11 +56,14 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/cart_quantitiy"
-            android:layout_width="20dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
@@ -61,13 +76,10 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/deleteButton"
@@ -75,8 +87,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:backgroundTint="#8BB00020"
-            app:srcCompat="@drawable/ic_baseline_delete_24" />
+            android:backgroundTint="@android:color/holo_red_light"
+            android:minHeight="48dp"
+            app:srcCompat="@drawable/ic_baseline_delete_24"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

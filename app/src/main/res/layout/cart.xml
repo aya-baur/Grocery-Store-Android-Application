@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
         android:layout_marginTop="6dp"
-        android:text="@string/name"
+        android:text="@string/store_name"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,11 +28,20 @@
 
         <TextView
             android:id="@+id/productTextView"
-            android:layout_width="140dp"
+            android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:minWidth="100dp"
             android:text="@string/product"
+            android:textAlignment="textStart"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="15dp" />
 
         <TextView
             android:id="@+id/priceTextView"
@@ -43,20 +52,20 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="30dp" />
+
+        <TextView
             android:id="@+id/amountTextView"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/amount"
+            android:text="@string/quantity"
             android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/itemTotalTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/item_total"
-            android:textSize="14sp" />
     </LinearLayout>
 
     <View
@@ -83,6 +92,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="8dp"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">

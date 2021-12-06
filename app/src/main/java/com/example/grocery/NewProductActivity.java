@@ -38,14 +38,17 @@ public class NewProductActivity extends AppCompatActivity {
 
         //check that there is something in all fields
         if (productName.equalsIgnoreCase("")) {
-            editProductName.setHint("please enter a product name"); //do toast instead of hint
-            editProductName.setError("Required! Please enter a product name");
+            editProductName.requestFocus();
+           // editProductName.setHint("please enter a product name"); //do toast instead of hint
+            editProductName.setError("Product Name is Required!");
         } else if (editPrice.getText().toString().equalsIgnoreCase("")) {
-            editPrice.setHint("price is required");
+            editPrice.requestFocus();
+            //editPrice.setHint("price is required");
             editPrice.setError("Price is Required!");
         } else if (productUnit.equalsIgnoreCase("")) {
-            editUnit.setHint("ex: kg"); //do toast instead of hint
-            editUnit.setError("Required! Please enter a unit of the product");
+            editUnit.requestFocus();
+            //editUnit.setHint("ex: kg"); //do toast instead of hint
+            editUnit.setError("Unit is Required!");
         } else {
             //set price after made sure its not empty
             Double productPrice = Double.parseDouble(editPrice.getText().toString());

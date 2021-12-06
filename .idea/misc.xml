@@ -12,8 +12,8 @@
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.23429633554808996" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15640556340065795" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3098958333333333" />
-        <entry key="app/src/main/res/layout/cart.xml" value="0.4036458333333333" />
-        <entry key="app/src/main/res/layout/cart_row.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/cart.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/cart_row.xml" value="0.5" />
         <entry key="app/src/main/res/layout/cart_rowf.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/cart_temp.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/customer_cart.xml" value="0.29393115942028986" />
