@@ -12,6 +12,7 @@ import com.example.grocery.Contract.LoginContract;
 import com.example.grocery.CustomerHomeActivity;
 import com.example.grocery.Model.User;
 import com.example.grocery.Presenter.LoginPresenter;
+import com.example.grocery.Presenter.SignUpPresenter;
 import com.example.grocery.R;
 import com.example.grocery.StoreOwnerHomeActivity;
 import com.google.android.material.button.MaterialButton;
@@ -21,9 +22,13 @@ public class StoreOwnerSignUp extends AppCompatActivity implements LoginContract
     public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static final String STORE_ID = "STORE_ID";
 
+    EditText editTextEmailSignUpStoreOwner;
+    EditText editTextNameSignUpStoreOwner;
+    EditText editTextPassSignUpStoreOwner;
+
     MaterialButton btnSignUpStoreOwner;
 
-    private LoginPresenter loginPresenter;
+    private SignUpPresenter signUpPresenter;
     private ProgressDialog progressDialog;
 
     @Override
@@ -32,39 +37,60 @@ public class StoreOwnerSignUp extends AppCompatActivity implements LoginContract
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_owner_sign_up);
 
+        editTextEmailSignUpStoreOwner = findViewById(R.id.editTextEmailSignUpStoreOwner);
+        editTextNameSignUpStoreOwner = findViewById(R.id.editTextNameSignUpStoreOwner);
+        editTextPassSignUpStoreOwner = findViewById(R.id.editTextPassSignUpStoreOwner);
+
         btnSignUpStoreOwner = findViewById(R.id.btnSignUpStoreOwner);
-        loginPresenter=new LoginPresenter(new User(), this);
 
-        btnSignUpStoreOwner.setOnClickListener(v -> loginPresenter.validate(User.STORE_TYPE, true));
+        signUpPresenter=new SignUpPresenter(new User(), this);
+
+        btnSignUpStoreOwner.setOnClickListener(v -> signUpPresenter.validate(User.STORE_TYPE));
 
     }
 
     @Override
-    public EditText getEditTextEmail() {
-        return findViewById(R.id.editTextEmailSignUpStoreOwner);
+    public void emailEmpty() {
+        editTextEmailSignUpStoreOwner.requestFocus();
+        editTextEmailSignUpStoreOwner.setError("Email is required");
     }
 
     @Override
-    public EditText getEditTextName() {
-        return findViewById(R.id.editTextNameSignUpStoreOwner);
+    public void emailInvalid() {
+        editTextEmailSignUpStoreOwner.requestFocus();
+        editTextEmailSignUpStoreOwner.setError("Invalid Email");
     }
 
     @Override
-    public EditText getEditTextPassword() { return findViewById(R.id.editTextPassSignUpStoreOwner); }
+    public void nameEmpty() {
+        editTextNameSignUpStoreOwner.requestFocus();
+        editTextNameSignUpStoreOwner.setError("Name is required");
+    }
+
+    @Override
+    public void nameInvalid() {
+
+    }
+
+    @Override
+    public void passwordEmpty() {
+        editTextPassSignUpStoreOwner.requestFocus();
+        editTextPassSignUpStoreOwner.setError("Password is required");
+    }
 
     @Override
     public String getEmail() {
-        return getEditTextEmail().getText().toString();
+        return editTextEmailSignUpStoreOwner.getText().toString();
     }
 
     @Override
     public String getName() {
-        return getEditTextName().getText().toString();
+        return editTextNameSignUpStoreOwner.getText().toString();
     }
 
     @Override
     public String getPass() {
-        return getEditTextPassword().getText().toString();
+        return editTextPassSignUpStoreOwner.getText().toString();
     }
 
     @Override

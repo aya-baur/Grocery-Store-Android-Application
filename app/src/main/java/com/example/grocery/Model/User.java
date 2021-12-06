@@ -63,7 +63,7 @@ public class User implements LoginContract.Model{
 
     @Override
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
         generateId();
     }
 

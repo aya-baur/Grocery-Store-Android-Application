@@ -14,11 +14,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LoginPresenter implements LoginContract.Presenter
+public class SignUpPresenter implements LoginContract.Presenter
 {
     private LoginContract.Model user;
     private LoginContract.View view;
-    public LoginPresenter(LoginContract.Model user, LoginContract.View view) {
+    public SignUpPresenter(LoginContract.Model user, LoginContract.View view) {
         this.user=user;
         this.view=view;
     }
@@ -26,6 +26,7 @@ public class LoginPresenter implements LoginContract.Presenter
     @Override
     public void validate(int userType) {
         String email = view.getEmail();
+        String name = view.getName();
         String password = view.getPass();
 
         view.showProgressBar();
@@ -41,6 +42,11 @@ public class LoginPresenter implements LoginContract.Presenter
             loginResponse( true,"");
             view.emailInvalid();
         }
+        else if(name.isEmpty()) {
+            loginResponse( true,"");
+            view.nameEmpty();
+        }
+        // Can Name be invalid
         else if(password.isEmpty()) {
             loginResponse( true,"");
             view.passwordEmpty();
@@ -48,9 +54,10 @@ public class LoginPresenter implements LoginContract.Presenter
         else {
 
             user.setEmail(email);
+            user.setName(name);
             user.setPassword(password);
             user.setUserType(userType);
-            user.checkLoginExists(this, false);
+            user.checkLoginExists(this, true);
         }
     }
 

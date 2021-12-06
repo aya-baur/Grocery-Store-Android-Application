@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
     private LoginPresenter loginPresenter;
     private ProgressDialog progressDialog;
 
+    private EditText editTextEmail;
+    private EditText editTextPass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +36,24 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
 
         MaterialButton btnLoginAsCustomer = findViewById(R.id.btnLoginAsCustomer);
         MaterialButton btnLoginAsSeller = findViewById(R.id.btnLoginAsSeller);
+
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPass = findViewById(R.id.editTextPass);
+
         TextView txtCreateAccount = findViewById(R.id.txtCreateAccount);
 
         loginPresenter=new LoginPresenter(new User(), this);
 
 
-        btnLoginAsCustomer.setOnClickListener(view -> loginPresenter.validate(User.CUSTOMER_TYPE, false));
+        btnLoginAsCustomer.setOnClickListener(view -> loginPresenter.validate(User.CUSTOMER_TYPE));
 
-        btnLoginAsSeller.setOnClickListener(view -> loginPresenter.validate(User.STORE_TYPE, false));
+        btnLoginAsSeller.setOnClickListener(view -> loginPresenter.validate(User.STORE_TYPE));
 
         txtCreateAccount.setOnClickListener(view -> {
-            new AlertDialog.Builder(this).setPositiveButton("Create Account As Customer", (DialogInterface dialog, int which) -> {
+            new AlertDialog.Builder(this).setPositiveButton("Customer", (DialogInterface dialog, int which) -> {
                 Intent intent = new Intent(MainActivity.this, CustomerSignUp.class);
                 startActivity(intent);
-            }).setNeutralButton("Create Account As Store Owner ", (DialogInterface dialog, int which) -> {
+            }).setNeutralButton("Store Owner ", (DialogInterface dialog, int which) -> {
                 Intent intent = new Intent(MainActivity.this, StoreOwnerSignUp.class);
                 startActivity(intent);
             }).show();
@@ -54,23 +61,36 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
     }
 
     @Override
-    public EditText getEditTextEmail() {
-        return findViewById(R.id.editTextEmail);
+    public void emailEmpty() {
+        editTextEmail.requestFocus();
+        editTextEmail.setError("Email is required");
     }
 
     @Override
-    public EditText getEditTextName() {
-        return null;
+    public void emailInvalid() {
+        editTextEmail.requestFocus();
+        editTextEmail.setError("Invalid Email");
     }
 
     @Override
-    public EditText getEditTextPassword() {
-        return findViewById(R.id.editTextPass);
+    public void nameEmpty() {
+
+    }
+
+    @Override
+    public void nameInvalid() {
+
+    }
+
+    @Override
+    public void passwordEmpty() {
+        editTextPass.requestFocus();
+        editTextPass.setError("Password is required");
     }
 
     @Override
     public String getEmail() {
-        return getEditTextEmail().getText().toString();
+        return editTextEmail.getText().toString();
     }
 
     @Override
@@ -80,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
 
     @Override
     public String getPass() {
-        return getEditTextPassword().getText().toString();
+        return editTextPass.getText().toString();
     }
 
     @Override

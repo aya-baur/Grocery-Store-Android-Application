@@ -46,13 +46,17 @@ public interface LoginContract {
         public void hideProgressBar();
 
         //For focus
-        public EditText getEditTextEmail();
-        public EditText getEditTextName();
-        public EditText getEditTextPassword();
+        public void emailEmpty();
+        public void emailInvalid();
+        public void nameEmpty();
+        public void nameInvalid();
+        public void passwordEmpty();
+
+
     }
 
     public interface Presenter{
-        public void validate(int userType, boolean signUp);
+        public void validate(int userType);
         public void loginResponse(boolean isError, String message);
     }
 }
