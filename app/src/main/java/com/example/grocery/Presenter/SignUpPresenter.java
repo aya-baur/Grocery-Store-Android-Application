@@ -51,7 +51,7 @@ public class SignUpPresenter implements LoginContract.Presenter
             user.setEmail(email);
             user.setPassword(password);
             user.setUserType(userType);
-            user.checkLoginExists(this, false);
+            user.checkLoginExists(this, true);
         }
     }
 
