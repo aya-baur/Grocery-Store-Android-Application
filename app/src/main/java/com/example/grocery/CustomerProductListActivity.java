@@ -70,6 +70,11 @@ public class CustomerProductListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public void populateProductDataFromStoreId(String storeId, CustomerProductsListAdapter adapter) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores").child(storeId);
         ValueEventListener listener = new ValueEventListener() {

@@ -110,9 +110,9 @@ public class UserSignUp implements SignUpContract.Model {
                         Store newAccount = new Store(user.name, user.email, user.password);
                         mDatabase.child(String.valueOf(user.getId())).setValue(newAccount);
                     }
-                        presenter.loginResponse(false, "Created");
-                    }
+                    presenter.loginResponse(false, "Created");
                 }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

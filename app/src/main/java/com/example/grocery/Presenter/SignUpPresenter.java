@@ -21,8 +21,6 @@ public class SignUpPresenter implements SignUpContract.Presenter
         String name = view.getName();
         String password = view.getPass();
 
-        view.showProgressBar();
-
         Pattern patternCheck = Pattern.compile("^\\S+@\\S+\\.\\S+$");
         Matcher matcherCheck = patternCheck.matcher(email);
 
@@ -41,6 +39,7 @@ public class SignUpPresenter implements SignUpContract.Presenter
         else {
             view.showProgressBar();
             user.setEmail(email);
+            user.setName(name);
             user.setPassword(password);
             user.setUserType(userType);
             user.checkLoginExists(this);

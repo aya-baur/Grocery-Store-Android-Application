@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -72,6 +73,10 @@ public class CartActivity extends AppCompatActivity {
 
         Button placeOrder = findViewById(R.id.button_place_order);
         placeOrder.setOnClickListener((View view) -> {
+            if(cart.products.isEmpty()) {
+                Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
             //prepare an ArrayList<Map<productId:ID, Quantity:1>> to create an Order object
             ArrayList<Map<String, Integer>> productsData = new ArrayList<>();
 
@@ -115,7 +120,7 @@ public class CartActivity extends AppCompatActivity {
             };
             refC.addListenerForSingleValueEvent(listener);
             //empty the cart
-
+            cart.products.clear();
             finish();
         });
     }

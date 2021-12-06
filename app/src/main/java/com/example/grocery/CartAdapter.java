@@ -73,9 +73,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             public void onClick(View view) {
                 //need decrease the number of items to be bought
                 //if there is more than 1
-                if (context instanceof CartActivity) {
-                    ((CartActivity)context).addSubtotal(-1*cartItem.price);
-                }
+                double amountChange = -1*cartItem.price;
                 if(cartItem.quantity > 1){
                     //cartItem.quantity--;
                     productsToCartItem.get(cartItem.productId).quantity--;
@@ -85,6 +83,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                     itemsList.remove(p);
                     notifyItemRemoved(p);
                     notifyItemRangeChanged(p, itemsList.size());
+                }
+                if (context instanceof CartActivity) {
+                    ((CartActivity)context).addSubtotal(amountChange);
                 }
             }
         });
@@ -102,13 +103,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (context instanceof CartActivity) {
-                    ((CartActivity)context).addSubtotal(-1*cartItem.price*cartItem.quantity);
-                }
+                double amountChange = -1*cartItem.price*cartItem.quantity;
                 productsToCartItem.remove(itemsList.get(p).productId);
                 itemsList.remove(p);
                 notifyItemRemoved(p);
                 notifyItemRangeChanged(p, productsToCartItem.size());
+                if (context instanceof CartActivity) {
+                    ((CartActivity)context).addSubtotal(amountChange);
+                }
             }
         });
     }
