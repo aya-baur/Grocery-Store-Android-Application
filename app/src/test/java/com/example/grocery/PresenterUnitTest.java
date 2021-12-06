@@ -33,7 +33,7 @@ public class PresenterUnitTest {
         when(view.getPass()).thenReturn("abc");
 
         LoginPresenter presenter = new LoginPresenter(user, view);
-        presenter.validate(0, false);
+        presenter.validate(0);
 
         InOrder order = inOrder(view);
         order.verify(view).showProgressBar();
@@ -47,7 +47,7 @@ public class PresenterUnitTest {
         when(view.getPass()).thenReturn("");
 
         LoginPresenter presenter = new LoginPresenter(user, view);
-        presenter.validate(0, false);
+        presenter.validate(0);
 
         InOrder order = inOrder(view);
         order.verify(view).showProgressBar();
@@ -63,7 +63,7 @@ public class PresenterUnitTest {
 
         LoginPresenter presenter = new LoginPresenter(user, view);
 
-        presenter.validate(0, false);
+        presenter.validate(0);
 
         InOrder order = inOrder(view, user);
         order.verify(view).showProgressBar();
