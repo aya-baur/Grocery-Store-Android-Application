@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.inOrder;
@@ -35,10 +36,18 @@ public class PresenterUnitTest {
         LoginPresenter presenter = new LoginPresenter(user, view);
         presenter.validate(0);
 
-        InOrder order = inOrder(view);
-        order.verify(view).showProgressBar();
-        order.verify(view).hideProgressBar();
-        order.verify(view).writeToast("Email is required");
+        verify(view).emailEmpty();
+    }
+
+    @Test
+    public void validateInvalidEmail() {
+        when(view.getEmail()).thenReturn("3234");
+        when(view.getPass()).thenReturn("abc");
+
+        LoginPresenter presenter = new LoginPresenter(user, view);
+        presenter.validate(0);
+
+        verify(view).emailInvalid();
     }
 
     @Test
@@ -49,17 +58,14 @@ public class PresenterUnitTest {
         LoginPresenter presenter = new LoginPresenter(user, view);
         presenter.validate(0);
 
-        InOrder order = inOrder(view);
-        order.verify(view).showProgressBar();
-        order.verify(view).hideProgressBar();
-        order.verify(view).writeToast("Password is required");
+        verify(view).passwordEmpty();
     }
 
     @Test
-    public void validateNonEmptyFields() {
+    public void validateValidFields() {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("abc");
-        doNothing().when(user).checkLoginExists(anyObject(), false);
+        doNothing().when(user).checkLoginExists(anyObject(), anyBoolean());
 
         LoginPresenter presenter = new LoginPresenter(user, view);
 

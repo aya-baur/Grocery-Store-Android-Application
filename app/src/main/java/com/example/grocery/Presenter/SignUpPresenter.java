@@ -35,29 +35,23 @@ public class SignUpPresenter implements LoginContract.Presenter
         Matcher matcherCheck = patternCheck.matcher(email);
 
         if(email.isEmpty()) {
-            loginResponse( true,"");
             view.emailEmpty();
         }
         else if(!matcherCheck.matches()) {
-            loginResponse( true,"");
             view.emailInvalid();
         }
         else if(name.isEmpty()) {
-            loginResponse( true,"");
             view.nameEmpty();
         }
-        // Can Name be invalid
         else if(password.isEmpty()) {
-            loginResponse( true,"");
             view.passwordEmpty();
         }
         else {
-
+            view.showProgressBar();
             user.setEmail(email);
-            user.setName(name);
             user.setPassword(password);
             user.setUserType(userType);
-            user.checkLoginExists(this, true);
+            user.checkLoginExists(this, false);
         }
     }
 

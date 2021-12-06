@@ -61,13 +61,13 @@ public class CustomerOrdersActivity extends AppCompatActivity {
 
     public void populateOrdersDataFromId(String customerId) {
         CustomerOrdersAdapter customerOrdersAdapter = new CustomerOrdersAdapter(this, new ArrayList<>());
-        ArrayList<CustomerOrder> customerOrders = new ArrayList<>();
         recyclerView.setAdapter(customerOrdersAdapter);
-
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<CustomerOrder> customerOrders = new ArrayList<>();
                 Customer customer = dataSnapshot.child("customers").child(customerId).getValue(Customer.class);
                 for (Map<String, Integer> store_order: customer.getOrders_data()) {
                     String store_id = String.valueOf(store_order.get("store_id"));

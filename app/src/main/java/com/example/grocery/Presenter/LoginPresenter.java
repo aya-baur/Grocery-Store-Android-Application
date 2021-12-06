@@ -28,25 +28,20 @@ public class LoginPresenter implements LoginContract.Presenter
         String email = view.getEmail();
         String password = view.getPass();
 
-        view.showProgressBar();
-
         Pattern patternCheck = Pattern.compile("^\\S+@\\S+\\.\\S+$");
         Matcher matcherCheck = patternCheck.matcher(email);
 
         if(email.isEmpty()) {
-            loginResponse( true,"");
             view.emailEmpty();
         }
         else if(!matcherCheck.matches()) {
-            loginResponse( true,"");
             view.emailInvalid();
         }
         else if(password.isEmpty()) {
-            loginResponse( true,"");
             view.passwordEmpty();
         }
         else {
-
+            view.showProgressBar();
             user.setEmail(email);
             user.setPassword(password);
             user.setUserType(userType);

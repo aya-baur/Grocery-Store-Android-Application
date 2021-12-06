@@ -69,12 +69,12 @@ public class CustomerHomeActivity extends AppCompatActivity {
     public void populateStoreList() {
         CustomerStoresAdapter customerStoresAdapter = new CustomerStoresAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(customerStoresAdapter);
-        storeNameIds = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores");
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                storeNameIds = new ArrayList<>();
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     String store_name = child.child("name").getValue(String.class);
                     String store_id = String.valueOf(child.child("id").getValue(Integer.class));
