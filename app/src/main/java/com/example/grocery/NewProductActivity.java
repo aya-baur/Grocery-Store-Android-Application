@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -96,5 +97,11 @@ public class NewProductActivity extends AppCompatActivity {
             };
             ref.addListenerForSingleValueEvent(listener);
         }
+    }
+    @Override
+    public void onBackPressed()
+    {
+        NavUtils.navigateUpFromSameTask(this);
+        super.onBackPressed();
     }
 }

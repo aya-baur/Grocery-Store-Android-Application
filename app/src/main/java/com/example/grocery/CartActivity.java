@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -137,6 +138,12 @@ public class CartActivity extends AppCompatActivity {
         cartTax.setText("13%");
         double total = subtotal * 1.13;
         cartTotal.setText(NumberFormat.getCurrencyInstance().format(total));
+    }
+    @Override
+    public void onBackPressed()
+    {
+        NavUtils.navigateUpFromSameTask(this);
+        super.onBackPressed();
     }
 
 }

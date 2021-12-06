@@ -1,6 +1,7 @@
 package com.example.grocery;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,11 +71,6 @@ public class CustomerProductListActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     public void populateProductDataFromStoreId(String storeId, CustomerProductsListAdapter adapter) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("stores").child(storeId);
         ValueEventListener listener = new ValueEventListener() {
@@ -96,4 +92,11 @@ public class CustomerProductListActivity extends AppCompatActivity {
         };
         ref.addValueEventListener(listener);
 
-    }}
+    }
+    @Override
+    public void onBackPressed()
+    {
+        NavUtils.navigateUpFromSameTask(this);
+        super.onBackPressed();
+    }
+}

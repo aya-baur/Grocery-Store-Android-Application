@@ -1,6 +1,7 @@
 package com.example.grocery;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -72,5 +73,11 @@ public class ProductListActivity extends AppCompatActivity {
         };
         ref.addValueEventListener(listener);
 
+    }
+    @Override
+    public void onBackPressed()
+    {
+        NavUtils.navigateUpFromSameTask(this);
+        super.onBackPressed();
     }
 }

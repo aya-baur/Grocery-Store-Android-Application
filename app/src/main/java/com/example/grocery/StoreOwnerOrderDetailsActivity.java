@@ -1,6 +1,7 @@
 package com.example.grocery;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -107,5 +108,11 @@ public class StoreOwnerOrderDetailsActivity extends AppCompatActivity {
                 .child("orders")
                 .child(orderId)
                 .child("status").setValue(status);
+    }
+    @Override
+    public void onBackPressed()
+    {
+        NavUtils.navigateUpFromSameTask(this);
+        super.onBackPressed();
     }
 }
