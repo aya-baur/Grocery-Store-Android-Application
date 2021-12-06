@@ -15,8 +15,8 @@
 
         <TextView
             android:id="@+id/new_product_name3"
-            android:layout_width="213dp"
-            android:layout_height="28dp"
+            android:layout_width="151dp"
+            android:layout_height="42dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="44dp"
             android:text="@string/unit"
@@ -33,6 +33,7 @@
             android:layout_marginTop="24dp"
             android:ems="10"
             android:hint="@string/edit_new_product_name"
+            android:textColorHint="#757575"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:maxLines="1"
@@ -66,16 +67,16 @@
 
         <EditText
             android:id="@+id/editUnit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="153dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="52dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:maxLines="1"
             android:minHeight="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_product_name3" />
+            app:layout_constraintStart_toEndOf="@+id/new_product_name3"
+            app:layout_constraintTop_toBottomOf="@+id/editPriceDecimal" />
 
         <TextView
             android:id="@+id/new_product_name"

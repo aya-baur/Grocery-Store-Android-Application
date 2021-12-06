@@ -23,7 +23,7 @@ public class NewProductActivity extends AppCompatActivity {
         setContentView(R.layout.new_product_page);
     }
 
-    public void addNewProduct(View view){
+    public void addNewProduct(View view) {
 
         //create a Product Object
         //String name, int quantity, double price, String unit
@@ -32,52 +32,66 @@ public class NewProductActivity extends AppCompatActivity {
         String productName = editProductName.getText().toString();
         //Getting Product Price
         EditText editPrice = (EditText) findViewById(R.id.editPriceDecimal);
-        Double productPrice = Double.parseDouble(editPrice.getText().toString());
         //Getting Product Unit
         EditText editUnit = (EditText) findViewById(R.id.editUnit);
         String productUnit = editUnit.getText().toString();
 
-        //creating a Product Object
-        Product newProduct = new Product(productName, productPrice, productUnit);
-        int productId = newProduct.getId();
+        //check that there is something in all fields
+        if (productName.equalsIgnoreCase("")) {
+            editProductName.setHint("please enter a product name"); //do toast instead of hint
+            editProductName.setError("Required! Please enter a product name");
+        } else if (editPrice.getText().toString().equalsIgnoreCase("")) {
+            editPrice.setHint("price is required");
+            editPrice.setError("Price is Required!");
+        } else if (productUnit.equalsIgnoreCase("")) {
+            editUnit.setHint("ex: kg"); //do toast instead of hint
+            editUnit.setError("Required! Please enter a unit of the product");
+        } else {
+            //set price after made sure its not empty
+            Double productPrice = Double.parseDouble(editPrice.getText().toString());
 
-        //Getting intent and store ID
-        Intent intent = getIntent();
-        //Store ID to use when writing to database
+            //creating a Product Object
+            Product newProduct = new Product(productName, productPrice, productUnit);
+            int productId = newProduct.getId();
 
-        String storeId = intent.getStringExtra(ProductListActivity.STORE_ID);
+            //Getting intent and store ID
+            Intent intent = getIntent();
+            //Store ID to use when writing to database
 
-        // Writing to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("stores/" + storeId);
+            String storeId = intent.getStringExtra(ProductListActivity.STORE_ID);
 
-        //Checking that the id is unique
-        //Reading from database
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Store store = dataSnapshot.getValue(Store.class);
-                if(store.getProducts().containsKey(Integer.toString(productId))){
-                   //Throw an Exception to the user
-                    Context context = getApplicationContext();
-                    CharSequence text = "Error: Product with such name already exists!";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast.makeText(context, text, duration).show();
-                }else{
-                    //Writing to the database
-                    //If we got to this line, we are sure that product does not exist in the database -> should be like that
-                    ref.child("products").child(Integer.toString(productId)).setValue(newProduct);
-                    //Go back to Nigel's page
-                    finish();
+            // Writing to the database
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("stores/" + storeId);
+
+            //Checking that the id is unique
+            //Reading from database
+            ValueEventListener listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Store store = dataSnapshot.getValue(Store.class);
+                    if (store.getProducts().containsKey(Integer.toString(productId))) {
+                        //Throw an Exception to the user
+                        Context context = getApplicationContext();
+                        CharSequence text = "Error: Product with such name already exists!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast.makeText(context, text, duration).show();
+                    } else {
+                        //Writing to the database
+                        //If we got to this line, we are sure that product does not exist in the database -> should be like that
+                        ref.child("products").child(Integer.toString(productId)).setValue(newProduct);
+                        //Go back to Nigel's page
+                        finish();
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("warning", "loadPost:onCancelled",
-                        databaseError.toException());
-            }
-        };
-        ref.addListenerForSingleValueEvent(listener);
-    }
 
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.w("warning", "loadPost:onCancelled",
+                            databaseError.toException());
+                }
+            };
+            ref.addListenerForSingleValueEvent(listener);
+        }
+    }
 }

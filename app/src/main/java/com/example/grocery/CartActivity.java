@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,10 +63,10 @@ public class CartActivity extends AppCompatActivity {
             //calculating subtotal
             subtotal += entry.getValue().quantity * entry.getValue().price;
         }
-        cartSubtotal.setText(Double.toString(subtotal));
+        cartSubtotal.setText(NumberFormat.getCurrencyInstance().format(subtotal));
         cartTax.setText("13%");
         double total = subtotal * 1.13;
-        cartTotal.setText(Double.toString(total));
+        cartTotal.setText(NumberFormat.getCurrencyInstance().format(total));
 
         ////
 
@@ -127,10 +128,10 @@ public class CartActivity extends AppCompatActivity {
         cartTotal = findViewById(R.id.cart_order_total);
         cartTax = findViewById(R.id.cart_tax_value);
 
-        cartSubtotal.setText(Double.toString(subtotal));
+        cartSubtotal.setText(NumberFormat.getCurrencyInstance().format(subtotal));
         cartTax.setText("13%");
         double total = subtotal * 1.13;
-        cartTotal.setText(Double.toString(total));
+        cartTotal.setText(NumberFormat.getCurrencyInstance().format(total));
     }
 
 }
