@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
@@ -15,7 +14,7 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.example.grocery.Model.User;
+import com.example.grocery.Model.UserLogin;
 import com.example.grocery.Presenter.LoginPresenter;
 import com.example.grocery.View.MainActivity;
 
@@ -26,14 +25,14 @@ public class PresenterUnitTest {
     MainActivity view;
 
     @Mock
-    User user;
+    UserLogin userLogin;
 
     @Test
     public void validateEmailEmpty() {
         when(view.getEmail()).thenReturn("");
         when(view.getPass()).thenReturn("abc");
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
         presenter.validate(0);
 
         verify(view).emailEmpty();
@@ -44,7 +43,7 @@ public class PresenterUnitTest {
         when(view.getEmail()).thenReturn("3234");
         when(view.getPass()).thenReturn("abc");
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
         presenter.validate(0);
 
         verify(view).emailInvalid();
@@ -55,7 +54,7 @@ public class PresenterUnitTest {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("");
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
         presenter.validate(0);
 
         verify(view).passwordEmpty();
@@ -65,15 +64,15 @@ public class PresenterUnitTest {
     public void validateValidFields() {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("abc");
-        doNothing().when(user).checkLoginExists(anyObject(), anyBoolean());
+        doNothing().when(userLogin).checkLoginExists(anyObject());
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
 
         presenter.validate(0);
 
-        InOrder order = inOrder(view, user);
+        InOrder order = inOrder(view, userLogin);
         order.verify(view).showProgressBar();
-        order.verify(user).checkLoginExists(presenter, false);
+        order.verify(userLogin).checkLoginExists(presenter);
     }
 
     @Test
@@ -81,7 +80,7 @@ public class PresenterUnitTest {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("abc");
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
         String message = "Email or Password Incorrect";
         presenter.loginResponse(true, message);
 
@@ -94,10 +93,10 @@ public class PresenterUnitTest {
     public void loginResponseCustomerLogin() {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("abc");
-        when(user.getUserType()).thenReturn(User.CUSTOMER_TYPE);
-        when(user.getId()).thenReturn(123);
+        when(userLogin.getUserType()).thenReturn(UserLogin.CUSTOMER_TYPE);
+        when(userLogin.getId()).thenReturn(123);
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
         String message = "Success";
         presenter.loginResponse(false, message);
 
@@ -110,15 +109,15 @@ public class PresenterUnitTest {
     public void loginResponseStoreLogin() {
         when(view.getEmail()).thenReturn("1@gmail.com");
         when(view.getPass()).thenReturn("abc");
-        when(user.getUserType()).thenReturn(User.STORE_TYPE);
-        when(user.getId()).thenReturn(123);
+        when(userLogin.getUserType()).thenReturn(UserLogin.STORE_TYPE);
+        when(userLogin.getId()).thenReturn(123);
 
-        LoginPresenter presenter = new LoginPresenter(user, view);
+        LoginPresenter presenter = new LoginPresenter(userLogin, view);
         String message = "Success";
         presenter.loginResponse(false, message);
 
         InOrder order = inOrder(view);
         order.verify(view).hideProgressBar();
-        order.verify(view).continueStoreHome(String.valueOf(user.getId()));
+        order.verify(view).continueStoreHome(String.valueOf(userLogin.getId()));
     }
 }

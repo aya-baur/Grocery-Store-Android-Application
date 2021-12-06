@@ -1,15 +1,7 @@
 package com.example.grocery.Presenter;
 
-import android.widget.EditText;
-
-import androidx.annotation.NonNull;
-
 import com.example.grocery.Contract.LoginContract;
-import com.example.grocery.Model.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.grocery.Model.UserLogin;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,7 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter
             user.setEmail(email);
             user.setPassword(password);
             user.setUserType(userType);
-            user.checkLoginExists(this, false);
+            user.checkLoginExists(this);
         }
     }
 
@@ -57,7 +49,7 @@ public class LoginPresenter implements LoginContract.Presenter
                 view.writeToast(message);
             }
         } else {
-            if (user.getUserType() == User.CUSTOMER_TYPE) {
+            if (user.getUserType() == UserLogin.CUSTOMER_TYPE) {
                 view.continueCustomerHome(String.valueOf(user.getId()));
             } else {
                 view.continueStoreHome(String.valueOf(user.getId()));

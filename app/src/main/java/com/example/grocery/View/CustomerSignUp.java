@@ -8,20 +8,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.grocery.Contract.LoginContract;
+import com.example.grocery.Contract.SignUpContract;
 import com.example.grocery.CustomerHomeActivity;
-import com.example.grocery.Model.User;
-import com.example.grocery.Presenter.LoginPresenter;
+import com.example.grocery.Model.UserLogin;
+import com.example.grocery.Model.UserSignUp;
 import com.example.grocery.Presenter.SignUpPresenter;
 import com.example.grocery.R;
 import com.example.grocery.StoreOwnerHomeActivity;
 import com.google.android.material.button.MaterialButton;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-
-public class CustomerSignUp extends AppCompatActivity implements LoginContract.View{
+public class CustomerSignUp extends AppCompatActivity implements SignUpContract.View{
     public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static final String STORE_ID = "STORE_ID";
 
@@ -45,9 +42,9 @@ public class CustomerSignUp extends AppCompatActivity implements LoginContract.V
         editTextPassSignUpCustomer = findViewById(R.id.editTextPassSignUpCustomer);
 
         btnSignUpCustomer = findViewById(R.id.btnSignUpCustomer);
-        signUpPresenter=new SignUpPresenter(new User(), this);
+        signUpPresenter=new SignUpPresenter(new UserSignUp(), this);
 
-        btnSignUpCustomer.setOnClickListener(v -> signUpPresenter.validate(User.CUSTOMER_TYPE));
+        btnSignUpCustomer.setOnClickListener(v -> signUpPresenter.validate(UserLogin.CUSTOMER_TYPE));
 
     }
 
@@ -67,11 +64,6 @@ public class CustomerSignUp extends AppCompatActivity implements LoginContract.V
     public void nameEmpty() {
         editTextNameSignUpCustomer.requestFocus();
         editTextNameSignUpCustomer.setError("Name is required");
-    }
-
-    @Override
-    public void nameInvalid() {
-
     }
 
     @Override

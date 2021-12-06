@@ -8,17 +8,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.grocery.Contract.LoginContract;
+import com.example.grocery.Contract.SignUpContract;
 import com.example.grocery.CustomerHomeActivity;
-import com.example.grocery.Model.User;
-import com.example.grocery.Presenter.LoginPresenter;
+import com.example.grocery.Model.UserLogin;
+import com.example.grocery.Model.UserSignUp;
 import com.example.grocery.Presenter.SignUpPresenter;
 import com.example.grocery.R;
 import com.example.grocery.StoreOwnerHomeActivity;
 import com.google.android.material.button.MaterialButton;
 
 
-public class StoreOwnerSignUp extends AppCompatActivity implements LoginContract.View{
+public class StoreOwnerSignUp extends AppCompatActivity implements SignUpContract.View{
     public static final String CUSTOMER_ID = "CUSTOMER_ID";
     public static final String STORE_ID = "STORE_ID";
 
@@ -43,9 +43,9 @@ public class StoreOwnerSignUp extends AppCompatActivity implements LoginContract
 
         btnSignUpStoreOwner = findViewById(R.id.btnSignUpStoreOwner);
 
-        signUpPresenter=new SignUpPresenter(new User(), this);
+        signUpPresenter=new SignUpPresenter(new UserSignUp(), this);
 
-        btnSignUpStoreOwner.setOnClickListener(v -> signUpPresenter.validate(User.STORE_TYPE));
+        btnSignUpStoreOwner.setOnClickListener(v -> signUpPresenter.validate(UserLogin.STORE_TYPE));
 
     }
 
@@ -67,10 +67,7 @@ public class StoreOwnerSignUp extends AppCompatActivity implements LoginContract
         editTextNameSignUpStoreOwner.setError("Name is required");
     }
 
-    @Override
-    public void nameInvalid() {
 
-    }
 
     @Override
     public void passwordEmpty() {

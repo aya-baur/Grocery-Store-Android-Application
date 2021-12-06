@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.grocery.Contract.LoginContract;
 import com.example.grocery.CustomerHomeActivity;
-import com.example.grocery.Model.User;
+import com.example.grocery.Model.UserLogin;
 import com.example.grocery.Presenter.LoginPresenter;
 import com.example.grocery.R;
 import com.example.grocery.StoreOwnerHomeActivity;
@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
 
         TextView txtCreateAccount = findViewById(R.id.txtCreateAccount);
 
-        loginPresenter=new LoginPresenter(new User(), this);
+        loginPresenter=new LoginPresenter(new UserLogin(), this);
 
 
-        btnLoginAsCustomer.setOnClickListener(view -> loginPresenter.validate(User.CUSTOMER_TYPE));
+        btnLoginAsCustomer.setOnClickListener(view -> loginPresenter.validate(UserLogin.CUSTOMER_TYPE));
 
-        btnLoginAsSeller.setOnClickListener(view -> loginPresenter.validate(User.STORE_TYPE));
+        btnLoginAsSeller.setOnClickListener(view -> loginPresenter.validate(UserLogin.STORE_TYPE));
 
         txtCreateAccount.setOnClickListener(view -> {
             new AlertDialog.Builder(this).setPositiveButton("Customer", (DialogInterface dialog, int which) -> {
@@ -73,16 +73,6 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
     }
 
     @Override
-    public void nameEmpty() {
-
-    }
-
-    @Override
-    public void nameInvalid() {
-
-    }
-
-    @Override
     public void passwordEmpty() {
         editTextPass.requestFocus();
         editTextPass.setError("Password is required");
@@ -91,11 +81,6 @@ public class MainActivity extends AppCompatActivity implements LoginContract.Vie
     @Override
     public String getEmail() {
         return editTextEmail.getText().toString();
-    }
-
-    @Override
-    public String getName() {
-        return null;
     }
 
     @Override
