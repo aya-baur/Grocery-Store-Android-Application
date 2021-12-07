@@ -84,7 +84,7 @@ public class Order implements Comparable<Order> {
 
     public String getTimeFormatted() {
         Date date = new Date(this.time);
-        DateFormat deviceFormat = new SimpleDateFormat("yyyy/MM/dd  h:mm: a");
+        DateFormat deviceFormat = new SimpleDateFormat("yyyy/MM/dd  h:mm a");
         deviceFormat.setTimeZone(TimeZone.getDefault()); //Device timezone
         return deviceFormat.format(date);
     }
