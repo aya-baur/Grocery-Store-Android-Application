@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
             app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
         <TextView
@@ -61,7 +62,7 @@
             android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:hint="0"
-            android:minWidth="20dp"
+            android:minWidth="30dp"
             android:textAlignment="center" />
 
         <ImageButton
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
+            android:backgroundTint="#00FFFFFF"
             app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
     </LinearLayout>
